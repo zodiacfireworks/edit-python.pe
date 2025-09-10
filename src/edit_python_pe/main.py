@@ -24,6 +24,46 @@ from .utils import (build_md_content, create_pr, fork_repo, get_repo,
                     load_file_into_form)
 
 
+class LabeledInput(Vertical):
+
+    DEFAULT_CSS = """
+        LabeledInput {
+            height: auto;
+           
+        }
+        LabeledInput Static {
+            width: 25%;
+
+        }
+        LabeledInput Input {
+            width: 100%;
+        }
+    """
+
+    def __init__(
+        self, label: str, placeholder: str = "", value: str = "", **kwargs
+    ):
+        super().__init__(**kwargs)
+        self.label = label
+        self.placeholder = placeholder
+        self._value = value
+
+    def compose(self) -> ComposeResult:
+        yield Static(self.label, classes="label")
+        yield Input(
+            id="input", placeholder=self.placeholder, value=self._value
+        )
+
+    @property
+    def value(self):
+        return self._value
+
+    @value.setter
+    def value(self, v: str):
+        self._value = v
+        self.query_one(selector="#input").value = v
+
+
 class SocialEntry(Horizontal):
     DEFAULT_CSS = """
         SocialEntry Select {
@@ -129,10 +169,18 @@ class MemberApp(App):
 
         # 2) Build the form portion, hidden at first
         self.form_header = Static(FORM_HEADER, classes="header")
-        self.name_input = Input(placeholder=PLACEHOLDER_NAME)
-        self.email_input = Input(placeholder=PLACEHOLDER_EMAIL)
-        self.city_input = Input(placeholder=PLACEHOLDER_CITY)
-        self.homepage_input = Input(placeholder=PLACEHOLDER_HOMEPAGE)
+        self.name_input = LabeledInput(
+            f"{PLACEHOLDER_NAME}:", placeholder=PLACEHOLDER_NAME
+        )
+        self.email_input = LabeledInput(
+            f"{PLACEHOLDER_EMAIL}:", placeholder=PLACEHOLDER_EMAIL
+        )
+        self.city_input = LabeledInput(
+            f"{PLACEHOLDER_CITY}:", placeholder=PLACEHOLDER_CITY
+        )
+        self.homepage_input = LabeledInput(
+            f"{PLACEHOLDER_HOMEPAGE}:", placeholder=PLACEHOLDER_HOMEPAGE
+        )
 
         self.who_area = TextArea()
         self.python_area = TextArea()
