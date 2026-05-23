@@ -6,30 +6,65 @@ from textual.app import App, ComposeResult
 from textual.containers import Horizontal, Vertical
 from textual.events import Event
 from textual.types import NoSelection
-from textual.widgets import (Button, Input, ListItem, ListView, Select, Static,
-                             TextArea)
+from textual.widgets import (
+    Button,
+    Input,
+    ListItem,
+    ListView,
+    Select,
+    Static,
+    TextArea,
+)
 
-from .constants import (BITBUCKET_OPTION, FACEBOOK_OPTION, GITHUB_OPTION,
-                        GITLAB_OPTION, INSTAGRAM_OPTION, LINKEDIN_OPTION,
-                        X_OPTION, YOUTUBE_OPTION)
-from .strings import (BUTTON_ADD, BUTTON_ADD_ALIAS, BUTTON_ADD_SOCIAL,
-                      BUTTON_BACK, BUTTON_DELETE, BUTTON_QUIT, BUTTON_SAVE,
-                      FORM_HEADER, LIST_TITLE, MESSAGE_EXIT, PLACEHOLDER_ALIAS,
-                      PLACEHOLDER_CITY, PLACEHOLDER_EMAIL,
-                      PLACEHOLDER_HOMEPAGE, PLACEHOLDER_NAME,
-                      PLACEHOLDER_SOCIAL_URL, PROMPT_SOCIAL_NETWORK,
-                      SECTION_ALIASES, SECTION_AVAIL, SECTION_CONTRIB,
-                      SECTION_PYTHON, SECTION_SOCIAL, SECTION_WHO)
-from .utils import (build_md_content, create_pr, fork_repo, get_repo,
-                    load_file_into_form)
+from .constants import (
+    BITBUCKET_OPTION,
+    FACEBOOK_OPTION,
+    GITHUB_OPTION,
+    GITLAB_OPTION,
+    INSTAGRAM_OPTION,
+    LINKEDIN_OPTION,
+    X_OPTION,
+    YOUTUBE_OPTION,
+)
+from .strings import (
+    BUTTON_ADD,
+    BUTTON_ADD_ALIAS,
+    BUTTON_ADD_SOCIAL,
+    BUTTON_BACK,
+    BUTTON_DELETE,
+    BUTTON_QUIT,
+    BUTTON_SAVE,
+    FORM_HEADER,
+    LIST_TITLE,
+    MESSAGE_EXIT,
+    PLACEHOLDER_ALIAS,
+    PLACEHOLDER_CITY,
+    PLACEHOLDER_EMAIL,
+    PLACEHOLDER_HOMEPAGE,
+    PLACEHOLDER_NAME,
+    PLACEHOLDER_SOCIAL_URL,
+    PROMPT_SOCIAL_NETWORK,
+    SECTION_ALIASES,
+    SECTION_AVAIL,
+    SECTION_CONTRIB,
+    SECTION_PYTHON,
+    SECTION_SOCIAL,
+    SECTION_WHO,
+)
+from .utils import (
+    build_md_content,
+    create_pr,
+    fork_repo,
+    get_repo,
+    load_file_into_form,
+)
 
 
 class LabeledInput(Vertical):
-
     DEFAULT_CSS = """
         LabeledInput {
             height: auto;
-           
+
         }
         LabeledInput Static {
             width: 25%;

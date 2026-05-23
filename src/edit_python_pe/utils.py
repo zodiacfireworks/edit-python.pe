@@ -16,10 +16,15 @@ from platformdirs import user_data_dir
 if TYPE_CHECKING:
     from .main import MemberApp
 
-from .strings import (MD_CONTENT, MESSAGE_FILE_EDITED_PR,
-                      MESSAGE_FILE_SAVED_PR, MESSAGE_LOAD_FILE_ERROR,
-                      MESSAGE_PROMPT_FOR_GITHUB_TOKEN, MESSAGE_REPO_NOT_FOUND,
-                      MESSAGE_UNAUTHORIZED)
+from .strings import (
+    MD_CONTENT,
+    MESSAGE_FILE_EDITED_PR,
+    MESSAGE_FILE_SAVED_PR,
+    MESSAGE_LOAD_FILE_ERROR,
+    MESSAGE_PROMPT_FOR_GITHUB_TOKEN,
+    MESSAGE_REPO_NOT_FOUND,
+    MESSAGE_UNAUTHORIZED,
+)
 
 
 def _compute_file_name(aliases: list[str], name: str, email: str) -> str:
@@ -36,7 +41,7 @@ def _compute_file_name(aliases: list[str], name: str, email: str) -> str:
 
 
 def _read_file(file_path: str) -> str:
-    with open(file_path, "r", encoding="utf-8") as fd:
+    with open(file_path, encoding="utf-8") as fd:
         return fd.read()
 
 
@@ -224,7 +229,7 @@ def create_pr(
         return MESSAGE_FILE_SAVED_PR.format(name_file=name_file)
 
 
-def load_file_into_form(app: "MemberApp", filename: str) -> None:
+def load_file_into_form(app: MemberApp, filename: str) -> None:
     path_md = os.path.join(app.repo_path, "blog", "members", filename)
     if not os.path.exists(path_md):
         return
