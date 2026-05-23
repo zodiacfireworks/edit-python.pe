@@ -96,7 +96,7 @@ class TestGithubClientMore:
         mock_pr.html_url = "http://fake-pr-url-new"
         mock_original_repo.create_pull.return_value = mock_pr
 
-        msg, url = create_pr(
+        _, url = create_pr(
             file_content="test",
             current_file="test.md",
             repo_path="/fake/repo",

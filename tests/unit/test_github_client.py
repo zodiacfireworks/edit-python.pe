@@ -38,7 +38,7 @@ class TestGithubClient:
         "edit_python_pe.github_client.user_data_dir",
         return_value="/tmp/testrepo",
     )
-    @patch("edit_python_pe.markdown_builder.os.path.exists", return_value=False)
+    @patch("edit_python_pe.github_client.os.path.exists", return_value=False)
     @patch("edit_python_pe.github_client.shutil.rmtree")
     @patch("edit_python_pe.github_client.pygit2.clone_repository")
     @patch("edit_python_pe.github_client.sleep", return_value=None)
@@ -68,7 +68,7 @@ class TestGithubClient:
         "edit_python_pe.github_client.user_data_dir",
         return_value="/tmp/testrepo",
     )
-    @patch("edit_python_pe.markdown_builder.os.path.exists", return_value=True)
+    @patch("edit_python_pe.github_client.os.path.exists", return_value=True)
     @patch("edit_python_pe.github_client.shutil.rmtree")
     @patch("edit_python_pe.github_client.pygit2.clone_repository")
     @patch("edit_python_pe.github_client.sleep", return_value=None)

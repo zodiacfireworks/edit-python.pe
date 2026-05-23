@@ -15,7 +15,5 @@ class TestLayout:
     async def test_layout_rendering(self):
         app = ComponentTestApp()
         async with app.run_test():
-            header = app.query_one(AppHeader)
-            footer = app.query_one(AppFooter)
-            assert header is not None
-            assert footer is not None
+            app.query_one(AppHeader)
+            app.query_one(AppFooter)
