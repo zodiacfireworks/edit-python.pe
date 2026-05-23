@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-22 23:01-0500\n"
+"POT-Creation-Date: 2026-05-23 05:29-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,131 +17,245 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: src/edit_python_pe/strings.py:19
-msgid "Files in 'blog/members':"
+#: src/edit_python_pe/github_client.py:25
+msgid "Unauthorized access. Please check your access token."
 msgstr ""
 
-#: src/edit_python_pe/strings.py:20
-msgid "Member Form"
+#: src/edit_python_pe/github_client.py:29
+msgid "Repository not found. Please check your access token."
 msgstr ""
 
-#: src/edit_python_pe/strings.py:23
-msgid "Quit"
+#: src/edit_python_pe/github_client.py:106
+#, python-brace-format
+msgid ""
+"Woohoo! Changes to {name_file} were successfully sent to your existing "
+"PR! 🎉"
 msgstr ""
 
-#: src/edit_python_pe/strings.py:24
-msgid "Add"
+#: src/edit_python_pe/github_client.py:120
+#: src/edit_python_pe/github_client.py:135
+#, python-brace-format
+msgid "Woohoo! {name_file} was saved successfully and your new PR is ready! 🎉"
 msgstr ""
 
-#: src/edit_python_pe/strings.py:25
-msgid "Save"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:26
-msgid "Back"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:27
-msgid "Add Social Network"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:28
-msgid "Add Alias"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:29
-msgid "Delete"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:32
-msgid "Name"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:33
-msgid "Email"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:34
-msgid "City"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:35
-msgid "Homepage"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:36
-msgid "Social network URL"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:37
-msgid "Alias"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:40
-msgid "Social Network"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:43
-msgid "Social Networks"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:44
-msgid "Aliases"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:45
-msgid "Who are you and what do you do?"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:46
-msgid "How do you program in Python?"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:47
-msgid "Do you have any contributions to the Python community?"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:48
-msgid "Are you available for mentoring, consulting, talks?"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:52
-msgid "Please enter your GitHub personal access token: "
-msgstr ""
-
-#: src/edit_python_pe/strings.py:54
-msgid "See you next time!"
-msgstr ""
-
-#: src/edit_python_pe/strings.py:55 src/edit_python_pe/strings.py:72
+#: src/edit_python_pe/markdown_builder.py:58
 #, python-brace-format
 msgid "Error reading file {filename}: {error}"
 msgstr ""
 
-#: src/edit_python_pe/strings.py:57
-msgid "Unauthorized access. Please check your access token."
+#: src/edit_python_pe/components/alias_entry.py:12
+msgid "Alias"
 msgstr ""
 
-#: src/edit_python_pe/strings.py:60
-msgid "Repository not found. Please check your access token."
+#: src/edit_python_pe/components/alias_entry.py:13
+#: src/edit_python_pe/components/social_entry.py:37
+msgid "Delete"
 msgstr ""
 
-#: src/edit_python_pe/strings.py:63
-#, python-brace-format
-msgid "File {name_file} edited, commit and changes sent to existing PR."
+#: src/edit_python_pe/components/layout.py:10
+#: src/edit_python_pe/screens/language.py:74
+msgid "Welcome aboard to Python Perú"
 msgstr ""
 
-#: src/edit_python_pe/strings.py:65
-#, python-brace-format
-msgid "File {name_file} saved, commit and PR ready."
+#: src/edit_python_pe/components/layout.py:19
+#: src/edit_python_pe/screens/language.py:80
+msgid "Proudly built with ❤️ in Perú"
 msgstr ""
 
-#: src/edit_python_pe/strings.py:67
-#, python-brace-format
-msgid "Creating a new entry to `blog/members` for {name} (alias: {first_alias})."
+#: src/edit_python_pe/components/social_entry.py:33
+msgid "Social Network"
 msgstr ""
 
-#: src/edit_python_pe/strings.py:70
-#, python-brace-format
-msgid "Changing an entry to `blog/members` for {name} (alias: {first_alias})."
+#: src/edit_python_pe/components/social_entry.py:36
+msgid "Social network URL"
+msgstr ""
+
+#: src/edit_python_pe/screens/auth.py:16
+msgid "Please enter your GitHub personal access token: "
+msgstr ""
+
+#: src/edit_python_pe/screens/auth.py:20
+msgid "Login"
+msgstr ""
+
+#: src/edit_python_pe/screens/auth.py:22
+#: src/edit_python_pe/screens/loading.py:29
+#: src/edit_python_pe/screens/member_list.py:28
+#: src/edit_python_pe/screens/save_loading.py:50
+msgid "Back"
+msgstr ""
+
+#: src/edit_python_pe/screens/auth.py:23
+#: src/edit_python_pe/screens/dashboard.py:22
+#: src/edit_python_pe/screens/language.py:57
+#: src/edit_python_pe/screens/language.py:78
+#: src/edit_python_pe/screens/loading.py:30
+#: src/edit_python_pe/screens/member_form.py:133
+#: src/edit_python_pe/screens/member_list.py:30
+#: src/edit_python_pe/screens/save_loading.py:53
+msgid "Quit"
+msgstr ""
+
+#: src/edit_python_pe/screens/dashboard.py:20
+msgid "Add New Member"
+msgstr ""
+
+#: src/edit_python_pe/screens/dashboard.py:21
+msgid "Edit Existing Member"
+msgstr ""
+
+#: src/edit_python_pe/screens/dashboard.py:36
+msgid "See you next time!"
+msgstr ""
+
+#: src/edit_python_pe/screens/language.py:48
+#: src/edit_python_pe/screens/language.py:76
+msgid "Select your language"
+msgstr ""
+
+#: src/edit_python_pe/screens/language.py:55
+#: src/edit_python_pe/screens/language.py:77
+msgid "Continue"
+msgstr ""
+
+#: src/edit_python_pe/screens/loading.py:22
+msgid "Authenticating and fetching repository..."
+msgstr ""
+
+#: src/edit_python_pe/screens/loading.py:80
+msgid "Successfully authenticated!"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:25
+msgid "Are you sure you want to discard your changes?"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:30
+#: src/edit_python_pe/screens/quit_confirm.py:18
+msgid "Cancel"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:35
+#: src/edit_python_pe/screens/member_form.py:131
+msgid "Discard"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:66
+msgid "Name"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:67
+msgid "Name:"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:71
+msgid "Email"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:72
+msgid "Email:"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:77
+msgid "Social Networks"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:80
+msgid "Add Social Network"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:86
+msgid "Aliases"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:89
+msgid "Add Alias"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:93
+msgid "City"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:94
+msgid "City:"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:98
+msgid "Homepage"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:99
+msgid "Homepage:"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:105
+msgid "Who are you and what do you do?"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:110
+msgid "How do you program in Python?"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:115
+msgid "Do you have any contributions to the Python community?"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:120
+msgid "Are you available for mentoring, consulting, talks?"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:127
+msgid "Save"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:232
+msgid "Name is required."
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:235
+msgid "Email is required."
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:238
+msgid "Invalid email format."
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:249
+msgid "Invalid homepage URL format."
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:255
+msgid "Invalid URL format for social network."
+msgstr ""
+
+#: src/edit_python_pe/screens/member_list.py:20
+msgid "Select a member to edit:"
+msgstr ""
+
+#: src/edit_python_pe/screens/member_list.py:25
+msgid "Edit"
+msgstr ""
+
+#: src/edit_python_pe/screens/quit_confirm.py:13
+msgid "Are you sure you want to close the app?"
+msgstr ""
+
+#: src/edit_python_pe/screens/quit_confirm.py:23
+msgid "Close"
+msgstr ""
+
+#: src/edit_python_pe/screens/save_loading.py:42
+msgid "Saving changes and creating PR..."
+msgstr ""
+
+#: src/edit_python_pe/screens/save_loading.py:51
+msgid "Open PR"
+msgstr ""
+
+#: src/edit_python_pe/screens/save_loading.py:52
+msgid "Copy URL"
+msgstr ""
+
+#: src/edit_python_pe/screens/save_loading.py:157
+msgid "URL copied to clipboard!"
 msgstr ""
