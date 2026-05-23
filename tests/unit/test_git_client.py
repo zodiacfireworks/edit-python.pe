@@ -28,7 +28,7 @@ class TestGitClient:
             ):
                 SignatureMock.return_value = MagicMock()
                 RemoteCallbacksMock.return_value = MagicMock()
-                commit_msg, repo, remote, callbacks = _commit_and_push(
+                commit_msg, _repo, _remote, _callbacks = _commit_and_push(
                     repo_path,
                     token,
                     was_changed,
@@ -36,7 +36,12 @@ class TestGitClient:
                     name,
                     email,
                 )
-                repo_instance.index.add_all.assert_called()
+                from unittest.mock import call
+
+                repo_instance.index.add.assert_has_calls(
+                    [call(f"blog/members/{name_file}"), call("AUTHORS")],
+                    any_order=True
+                )
                 repo_instance.index.write.assert_called()
                 repo_instance.create_commit.assert_called()
                 repo_instance.remotes["origin"].push.assert_called()

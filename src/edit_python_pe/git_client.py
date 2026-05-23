@@ -1,3 +1,4 @@
+import os
 import pygit2
 
 
@@ -15,7 +16,9 @@ def _commit_and_push(
     pygit2.callbacks.RemoteCallbacks,
 ]:
     repo = pygit2.repository.Repository(repo_path)
-    repo.index.add_all()
+    safe_name_file = os.path.basename(name_file)
+    repo.index.add(f"blog/members/{safe_name_file}")
+    repo.index.add("AUTHORS")
     repo.index.write()
     author_sig = pygit2.Signature(name or "Unknown", email or "unknown@email")
     tree_id = repo.index.write_tree()
