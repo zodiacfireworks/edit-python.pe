@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, call, patch
 
 from edit_python_pe.git_client import _commit_and_push
 
@@ -36,7 +36,6 @@ class TestGitClient:
                     name,
                     email,
                 )
-                from unittest.mock import call
 
                 repo_instance.index.add.assert_has_calls(
                     [call(f"blog/members/{name_file}"), call("AUTHORS")], any_order=True
