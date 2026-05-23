@@ -115,6 +115,7 @@ cmd = "uv run cz bump --changelog"
 cmd = "uv run cz changelog"
 
 [tool.poe.tasks."messages:init"]
+args = [{ name = "lang", options = ["--lang"], required = true }]
 sequence = [
   "messages:extract",
   { cmd = "uv run pybabel init -i src/edit_python_pe/locale/messages.pot -d src/edit_python_pe/locale -l ${lang}" }
@@ -122,8 +123,6 @@ sequence = [
 
 [tool.poe.tasks."messages:extract"]
 cmd = "uv run pybabel extract -F babel.cfg -o src/edit_python_pe/locale/messages.pot src/edit_python_pe"
-
-args = [{ name = "lang", options = ["--lang"], required = true }]
 
 [tool.poe.tasks."messages:update"]
 sequence = [
