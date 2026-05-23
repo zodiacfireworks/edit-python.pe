@@ -1,3 +1,4 @@
+from github.Repository import Repository
 from textual.app import App
 
 from .screens.language import LanguageScreen
@@ -8,10 +9,10 @@ class MemberApp(App):
 
     def __init__(self) -> None:
         super().__init__()
-        self.original_repo = None
-        self.forked_repo = None
-        self.token = ""
-        self.repo_path = ""
+        self.original_repo: Repository | None = None
+        self.forked_repo: Repository | None = None
+        self.token: str | None = ""
+        self.repo_path: str | None = ""
 
     def on_mount(self) -> None:
         self.push_screen(LanguageScreen())
