@@ -84,6 +84,9 @@ def load_file_into_form(
         except Exception:
             yaml_data = {}
 
+        if not isinstance(yaml_data, dict):
+            yaml_data = {}
+
     screen.name_input.value = yaml_data.get("author", "")
     screen.city_input.value = yaml_data.get("location", "")
 
