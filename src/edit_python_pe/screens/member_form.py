@@ -295,7 +295,8 @@ class MemberFormScreen(Screen):
         app = cast("MemberApp", self.app)
 
         if app.original_repo is None or app.forked_repo is None:
-            raise RuntimeError("GitHub repositories are not initialized.")
+            self.app.notify("GitHub repositories are not initialized.", severity="error")
+            return
 
         self.app.push_screen(
             SaveLoadingScreen(
