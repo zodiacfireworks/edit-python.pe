@@ -144,4 +144,3 @@ msgstr ""
 #, python-brace-format
 msgid "Changing an entry to `blog/members` for {name} (alias: {first_alias})."
 msgstr "Modifica di una voce in `blog/membri` per {name} (alias: {first_alias})."
-

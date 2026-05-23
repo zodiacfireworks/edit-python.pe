@@ -148,4 +148,3 @@ msgid "Changing an entry to `blog/members` for {name} (alias: {first_alias})."
 msgstr ""
 "Alterando uma entrada para `blog/membros` para {name} (Alias: "
 "{First_alias})."
-
