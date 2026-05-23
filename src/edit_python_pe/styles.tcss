@@ -1,0 +1,105 @@
+/* styles.tcss */
+
+LabeledInput {
+    height: auto;
+}
+
+LabeledInput Static {
+    width: 25%;
+}
+
+LabeledInput Input {
+    width: 100%;
+}
+
+SocialEntry Select {
+    width: 25%;
+}
+
+SocialEntry Input {
+    width: 50%;
+}
+
+SocialEntry Button {
+    width: 25%;
+}
+
+AliasEntry Input {
+    width: 75%;
+}
+
+AliasEntry Button {
+    width: 25%;
+}
+
+/* Base styles for screens and structure */
+
+Screen {
+    align: center middle;
+}
+
+#form-container {
+    padding: 1;
+}
+
+#auth-container {
+    width: 50%;
+    height: auto;
+    border: solid green;
+    padding: 1;
+    align: center middle;
+}
+
+#auth-container Static {
+    text-align: center;
+    margin-bottom: 1;
+}
+
+#lang-container {
+    width: 50%;
+    height: auto;
+    border: solid blue;
+    padding: 1;
+    align: center middle;
+}
+
+#lang-container Static {
+    text-align: center;
+    margin-bottom: 1;
+}
+
+#lang-actions {
+    align: center middle;
+    height: auto;
+    width: 100%;
+}
+
+#lang-actions Button {
+    margin: 1;
+}
+
+.footer {
+    text-align: center;
+    color: gray;
+    margin-top: 1;
+}
+
+LoadingIndicator {
+    margin-top: 1;
+}
+
+.header {
+    text-align: center;
+    text-style: bold;
+    margin-bottom: 1;
+}
+
+.subheader {
+    text-style: bold;
+    margin-top: 1;
+}
+
+.label {
+    text-align: right;
+    margin-right: 1;
+}

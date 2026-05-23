@@ -105,38 +105,77 @@ class AliasEntry(Horizontal):
 class LanguageScreen(Screen):
     def compose(self) -> ComposeResult:
         with Vertical(id="lang-container"):
-            yield Static("Select your language / Seleccione su idioma:")
+            yield Static(
+                _("Welcome aboard to Python Perú"),
+                id="welcome-header",
+                classes="header",
+            )
+            yield Static(_("Select your language"), id="lang-label")
             yield OptionList(
                 "English",
                 "Español",
                 "Français",
                 "Italiano",
                 "Português",
-                "Runa Simi (Quechua)",
+                "Runa Simi",
                 id="lang-select",
             )
-            yield Button("Continue / Continuar", id="lang-continue")
+            with Horizontal(id="lang-actions"):
+                yield Button(_("Quit"), id="lang-quit", variant="error")
+                yield Button(
+                    _("Continue"), id="lang-continue", variant="primary"
+                )
+            yield Static(
+                _("Proudly built with 🤍 in Perú"),
+                id="footer-msg",
+                classes="footer",
+            )
+
+    def on_option_list_option_highlighted(
+        self, event: OptionList.OptionHighlighted
+    ) -> None:
+        lang_map = {
+            0: "en",
+            1: "es",
+            2: "fr",
+            3: "it",
+            4: "pt",
+            5: "qu",
+        }
+        lang_code = (
+            lang_map.get(event.option_index, "en")
+            if event.option_index is not None
+            else "en"
+        )
+
+        set_language(lang_code)
+
+        # Update labels dynamically
+        self.query_one("#welcome-header", Static).update(
+            _("Welcome aboard to Python Perú")
+        )
+        self.query_one("#lang-label", Static).update(_("Select your language"))
+        self.query_one("#lang-continue", Button).label = _("Continue")
+        self.query_one("#lang-quit", Button).label = _("Quit")
+        self.query_one("#footer-msg", Static).update(
+            _("Proudly built with 🤍 in Perú")
+        )
 
     def on_button_pressed(self, event: Button.Pressed) -> None:
-        if event.button.id == "lang-continue":
-            lang_map = {
-                0: "en",
-                1: "es",
-                2: "fr",
-                3: "it",
-                4: "pt",
-                5: "qu",
-            }
+        if event.button.id == "lang-quit":
+            self.app.exit()
+        elif event.button.id == "lang-continue":
+            # If the user clicks continue without highlighting an option,
+            # make sure we set default
             opt_list = self.query_one("#lang-select", OptionList)
             selected_idx = opt_list.highlighted
+            lang_map = {0: "en", 1: "es", 2: "fr", 3: "it", 4: "pt", 5: "qu"}
             lang_code = (
                 lang_map.get(selected_idx, "en")
                 if selected_idx is not None
                 else "en"
             )
-
             set_language(lang_code)
-
             self.app.push_screen(AuthScreen())
 
 
