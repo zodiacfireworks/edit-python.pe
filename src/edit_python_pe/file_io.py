@@ -9,13 +9,17 @@ def _read_file(file_path: str) -> str:
 
 
 def _append_file(file_content: str, file_path: str) -> None:
-    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    dirpath = os.path.dirname(file_path)
+    if dirpath:
+        os.makedirs(dirpath, exist_ok=True)
     with open(file_path, "a", encoding="utf-8") as fd:
         fd.write(file_content)
 
 
 def _write_file(file_content: str, file_path: str) -> None:
-    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    dirpath = os.path.dirname(file_path)
+    if dirpath:
+        os.makedirs(dirpath, exist_ok=True)
     with open(file_path, "w", encoding="utf-8") as fd:
         fd.write(file_content)
 
