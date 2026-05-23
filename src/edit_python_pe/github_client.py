@@ -1,4 +1,6 @@
+import logging
 import os
+import random
 import shutil
 from time import sleep
 
@@ -12,6 +14,8 @@ from .file_io import _write_authors_file
 from .git_client import _commit_and_push
 from .markdown_builder import _create_member_file
 from .strings import _
+
+logger = logging.getLogger(__name__)
 
 
 def get_repo(token: str) -> tuple[str, Repository]:
@@ -41,8 +45,27 @@ def fork_repo(token: str, original_repo: Repository) -> tuple[str, Repository]:
     callbacks = pygit2.callbacks.RemoteCallbacks(
         credentials=pygit2.UserPass(token, "x-oauth-basic")
     )
-    sleep(3)
-    pygit2.clone_repository(forked_repo_url, repo_path, callbacks=callbacks)
+
+    max_retries = 5
+    for attempt in range(max_retries):
+        try:
+            pygit2.clone_repository(forked_repo_url, repo_path, callbacks=callbacks)
+            break
+        except Exception as e:
+            if attempt == max_retries - 1:
+                logger.error(
+                    "Failed to clone forked repository after %d attempts", max_retries
+                )
+                raise
+            sleep_time = 2**attempt + random.uniform(0, 1)  # noqa: S311
+            logger.warning(
+                "Attempt %d to clone repository failed: %s. Retrying in %.2fs...",
+                attempt + 1,
+                e,
+                sleep_time,
+            )
+            sleep(sleep_time)
+
     return repo_path, forked_repo
 
 
@@ -57,7 +80,7 @@ def create_pr(
     name: str,
     email: str,
 ) -> tuple[str, str | None]:
-    name_file, file_path = _create_member_file(
+    name_file, _unused_file_path = _create_member_file(
         file_content,
         current_file,
         repo_path,
