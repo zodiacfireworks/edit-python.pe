@@ -41,7 +41,7 @@ class TestLoadingScreen:
                 if app.screen.query_one("#loading-actions").display:
                     break
             assert app.screen.query_one("#loading-actions").display is True
-            assert "Auth Error" in str(app.screen.query_one("#result-msg").render())
+            assert "unexpected error" in str(app.screen.query_one("#result-msg").render())
 
             # Test loading-back
             await pilot.click("#loading-back")

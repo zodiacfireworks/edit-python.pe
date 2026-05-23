@@ -1,3 +1,4 @@
+import logging
 from typing import TYPE_CHECKING, cast
 
 from textual import work
@@ -14,6 +15,8 @@ from ..github_client import fork_repo, get_repo
 from ..strings import _
 from .dashboard import DashboardScreen
 from .quit_confirm import QuitConfirmScreen
+
+logger = logging.getLogger(__name__)
 
 
 class LoadingScreen(Screen):
@@ -58,7 +61,7 @@ class LoadingScreen(Screen):
     @work(thread=True, exclusive=True)
     def authenticate_and_clone(self) -> None:
         try:
-            _, original_repo = get_repo(self.token)
+            _token, original_repo = get_repo(self.token)
             repo_path, forked_repo = fork_repo(self.token, original_repo)
 
             app = cast("MemberApp", self.app)
@@ -69,8 +72,12 @@ class LoadingScreen(Screen):
             app.token = self.token
 
             self.app.call_from_thread(self.show_success)
-        except Exception as e:
-            error_message = str(e)
+        except Exception:
+            logger.error("Error during authentication and cloning", exc_info=True)
+            error_message = _(
+                "An unexpected error occurred while loading. "
+                "Please try again or contact support."
+            )
             self.app.call_from_thread(self.show_error, error_message)
 
     def show_success(self) -> None:
