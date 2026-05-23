@@ -82,18 +82,21 @@ class SaveLoadingScreen(Screen):
             self.pr_url = pr_url
             self.app.call_from_thread(self.show_success, message)
         except Exception as e:
-            error_message = str(e)
+            github_error_detail = str(e)
             try:
                 if isinstance(e, GithubException) and getattr(e, "data", None):
                     errors = e.data.get("errors", [])
                     if errors and isinstance(errors, list):
-                        error_message = errors[0].get(
+                        github_error_detail = errors[0].get(
                             "message", e.data.get("message", str(e))
                         )
                     else:
-                        error_message = e.data.get("message", str(e))
+                        github_error_detail = e.data.get("message", str(e))
+                logger.error("Error creating PR: %s", github_error_detail, exc_info=e)
             except Exception:
-                logger.error("Failed to extract GithubException details", exc_info=True)
+                logger.error("Failed to extract GithubException details", exc_info=e)
+            
+            error_message = _("An error occurred while saving. Please try again.")
             self.app.call_from_thread(self.show_error, error_message)
 
     def show_success(self, message: str) -> None:

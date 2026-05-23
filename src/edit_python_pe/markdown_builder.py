@@ -65,10 +65,10 @@ def load_file_into_form(
     try:
         content = _read_file(path_md)
     except Exception as e:
+        import logging
+        logging.getLogger(__name__).exception("Error reading file %s", filename, exc_info=e)
         member_app.exit(
-            message=_("Error reading file {filename}: {error}").format(
-                filename=filename, error=e
-            )
+            message=_("Error reading file {filename}").format(filename=filename)
         )
         return
 
