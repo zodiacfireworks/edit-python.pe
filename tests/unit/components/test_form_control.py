@@ -22,7 +22,7 @@ class TestFormControl:
             assert fc.help_text_content == "Test Help"
 
             # Error states
-            error_msg = fc.query_one("#error-msg", Static)
+            error_msg = fc.query_one(".form-error-text", Static)
             assert error_msg.display is False
 
             fc.show_error("Bad input")

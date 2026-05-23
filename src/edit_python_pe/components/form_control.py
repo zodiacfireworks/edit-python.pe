@@ -26,13 +26,13 @@ class FormControl(Vertical):
         if self.help_text_content:
             yield Static(self.help_text_content, classes="form-help-text")
 
-        yield Static("", classes="form-error-text", id="error-msg")
+        yield Static("", classes="form-error-text")
 
     def on_mount(self) -> None:
-        self.query_one("#error-msg", Static).display = False
+        self.query_one(".form-error-text", Static).display = False
 
     def show_error(self, message: str) -> None:
-        error_static = self.query_one("#error-msg", Static)
+        error_static = self.query_one(".form-error-text", Static)
         error_static.update(message)
         error_static.display = True
 
@@ -40,7 +40,7 @@ class FormControl(Vertical):
         self.add_class("has-error")
 
     def clear_error(self) -> None:
-        error_static = self.query_one("#error-msg", Static)
+        error_static = self.query_one(".form-error-text", Static)
         error_static.update("")
         error_static.display = False
 
