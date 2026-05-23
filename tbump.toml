@@ -21,7 +21,7 @@ src = "pyproject.toml"
 search = 'tags/v{current_version}.tar.gz'
 
 [[file]]
-src = "src/edit_python_pe/__about__.py"
+src = "src/edit_python_pe/__version__.py"
 search = '__version__ = "{current_version}"'
 
 [[before_commit]]
