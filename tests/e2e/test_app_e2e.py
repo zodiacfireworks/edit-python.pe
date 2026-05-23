@@ -58,17 +58,18 @@ class TestAppE2E:
             await pilot.click("#login-btn")
 
             # 3. Loading Screen
-            # Wait for background task to finish and transition to Dashboard
-            for _ in range(20):
+            # The background thread sets app repos; advance_screen fires after a
+            # 1.5 s timer. Give it up to 5 s total to reach DashboardScreen in CI.
+            for _ in range(50):
                 await pilot.pause(0.1)
                 if isinstance(app.screen, DashboardScreen):
                     break
 
-            for _ in range(10):
-                await pilot.pause(0.1)
-                if isinstance(app.screen, DashboardScreen):
-                    break
             assert isinstance(app.screen, DashboardScreen)
+
+            # Verify repos were populated by LoadingScreen before proceeding
+            assert app.original_repo is not None
+            assert app.forked_repo is not None
 
             # 4. Dashboard -> Add Member
             await pilot.click("#dash-add")
@@ -109,8 +110,8 @@ class TestAppE2E:
 
             await pilot.click("#member-form-save")
 
-            # 6. Save Loading Screen
-            for _ in range(40):
+            # 6. Save Loading Screen — give up to 5 s for the background work
+            for _ in range(50):
                 await pilot.pause(0.1)
                 if (
                     isinstance(app.screen, SaveLoadingScreen)
