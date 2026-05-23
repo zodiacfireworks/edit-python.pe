@@ -28,5 +28,5 @@ class QuitConfirmScreen(ModalScreen[bool]):
     def on_button_pressed(self, event: Button.Pressed) -> None:
         if event.button.id == "quit-confirm-cancel":
             self.dismiss(False)
-        elif event.button.id == "quit-confirm-close":
+        else:
             self.dismiss(True)
