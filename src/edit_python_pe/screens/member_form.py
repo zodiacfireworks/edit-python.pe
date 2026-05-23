@@ -309,7 +309,7 @@ class MemberFormScreen(Screen):
             or app.token is None
         ):
             self.app.notify(
-                "GitHub repositories are not initialized.", severity="error"
+                _("GitHub repositories are not initialized."), severity="error"
             )
             return
 
