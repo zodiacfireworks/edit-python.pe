@@ -22,6 +22,12 @@ repos:
           - --output-format=full
       - id: ruff-format
 
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.8.3
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+
   - repo: local
     hooks:
       - id: ty
@@ -29,6 +35,7 @@ repos:
         entry: uv run ty check
         language: system
         files: \.py$
+
       - id: testing
         name: Testing
         description: Running tests for the app

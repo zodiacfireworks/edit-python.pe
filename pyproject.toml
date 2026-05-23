@@ -33,6 +33,7 @@ classifiers = [
 ]
 dependencies = [
   "babel>=2.18.0",
+  "keyring>=25.7.0",
   "platformdirs>=4.9.6",
   "pygit2>=1.19.2",
   "pygithub>=2.9.1",
@@ -59,9 +60,10 @@ dev = [
   "polib>=1.2.0",
   "pre-commit>=4.6.0",
   "pytest>=9.0.3",
+  "pytest-asyncio>=1.3.0",
   "pytest-cov>=7.1.0",
   "ruff>=0.15.14",
-  "tbump>=6.11.0",
+  "commitizen>=4.8.3",
   "textual-dev>=1.8.0",
   "tomli-w>=1.2.0",
   "ty>=0.0.39",
@@ -72,27 +74,29 @@ requires = ["uv_build>=0.9.18,<0.10.0"]
 build-backend = "uv_build"
 
 [tool.poe.tasks]
-"lint:update" = "uv run pre-commit autoupdate"
-"lint" = "uv run pre-commit run --all"
+"lint" = "uv run ruff check --fix"
+"lint:format" = "uv run ruff format"
+"lint:types" = "uv run ty check"
 "test" = "uv run pytest --cov edit_python_pe --cov-report xml:cobertura.xml --cov-report term --junitxml report.xml"
 "freeze" = "uv export --format requirements.txt --no-group dev --no-hashes --no-annotate --no-header --output-file requirements.txt"
 "freeze:dev" = "uv export --format requirements.txt --all-groups --no-hashes --no-annotate --no-header --output-file requirements.dev.txt"
 "changelog:draft" = { shell = "cat .diff.txt | gemini < prompts/changelog_generator.txt > .CHANGELOG_DRAFT.md" }
 
-[tool.poe.tasks."version:update"]
-sequence = [
-  { cmd = "uv run tbump --no-push --no-tag --non-interactive ${version}" },
-]
-args = [{ name = "version", positional = true }]
+[tool.poe.tasks."release"]
+cmd = "uv run cz bump --changelog"
 
-[tool.poe.tasks."messages:extract"]
-cmd = "uv run pybabel extract -F babel.cfg -o src/edit_python_pe/locale/messages.pot src/edit_python_pe"
+[tool.poe.tasks."release:changelog"]
+cmd = "uv run cz changelog"
 
 [tool.poe.tasks."messages:init"]
 sequence = [
   "messages:extract",
   { cmd = "uv run pybabel init -i src/edit_python_pe/locale/messages.pot -d src/edit_python_pe/locale -l ${lang}" }
 ]
+
+[tool.poe.tasks."messages:extract"]
+cmd = "uv run pybabel extract -F babel.cfg -o src/edit_python_pe/locale/messages.pot src/edit_python_pe"
+
 args = [{ name = "lang", options = ["--lang"], required = true }]
 
 [tool.poe.tasks."messages:update"]
@@ -101,18 +105,11 @@ sequence = [
   { cmd = "uv run pybabel update -i src/edit_python_pe/locale/messages.pot -d src/edit_python_pe/locale" }
 ]
 
-[tool.poe.tasks."messages:translate"]
-cmd = "uv run python scripts/translate.py src/edit_python_pe/locale/${lang}/LC_MESSAGES/messages.po ${lang}"
-args = [{ name = "lang", options = ["--lang"], required = true }]
-
-[tool.poe.tasks.makemessages]
-ref = "messages:update"
-
-[tool.poe.tasks.compilemessages]
+[tool.poe.tasks."messages:compile"]
 cmd = "uv run pybabel compile -d src/edit_python_pe/locale"
 
 [tool.ruff]
-line-length = 79
+line-length = 88
 target-version = "py314"
 
 [tool.ruff.lint]
@@ -140,11 +137,16 @@ ignore = [
   "D203",  # 1 blank line required before class docstring
   "D213",  # Multi-line docstring summary should start at the second line
   "D407",  # Missing dashed underline after section
-  "S101",  # Use of assert detected (often used in tests)
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = ["S105", "S108", "E501"]
+"tests/*" = [
+  "S101",  # Use of assert detected
+  "S105",  # Use of hardcoded password string
+  "S106",  # Use of hardcoded password function args
+  "S108",  # Use of hardcoded temp files
+  "E501",  # Too long lines
+]
 
 [tool.ruff.lint.isort]
 known-first-party = ["edit_python_pe"]
@@ -167,6 +169,32 @@ line-ending = "auto"
 # invalid-argument-type = "ignore"
 # inconsistent-mro = "ignore"
 # unresolved-attribute = "ignore"
+
+[tool.commitizen]
+name = "cz_conventional_commits"
+version_provider = "pep621"
+version_scheme = "semver"
+tag_format = "v$version"
+update_changelog_on_bump = true
+major_version_zero = true
+changelog_file = "CHANGELOG.md"
+changelog_incremental = true
+version_files = [
+  "src/edit_python_pe/__version__.py:__version__ = \"$version\"",
+  "pyproject.toml:tags/v$version.tar.gz",
+]
+
+[[tool.commitizen.change_type_map]]
+"feat" = "Features"
+"fix" = "Bug Fixes"
+"docs" = "Documentation"
+"style" = "Styles"
+"refactor" = "Code Refactoring"
+"perf" = "Performance Improvements"
+"test" = "Tests"
+"build" = "Build System"
+"ci" = "Continuous Integration"
+"chore" = "Chores"
 
 [tool.uv.build-backend]
 module-name = "edit_python_pe"
