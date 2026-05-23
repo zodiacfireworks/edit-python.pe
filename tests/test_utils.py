@@ -104,7 +104,7 @@ class TestUtilityFunctions(unittest.TestCase):
                 expected_content
             )
             result = _read_file(file_path)
-            mock_open.assert_called_with(file_path, "r", encoding="utf-8")
+            mock_open.assert_called_with(file_path, encoding="utf-8")
             self.assertEqual(result, expected_content)
 
     def test_append_file(self):
