@@ -311,8 +311,13 @@ Input:focus, TextArea:focus {
     border: tall $info;
 }
 
-Select, Select:focus {
+Select {
     border: none;
+    outline: none;
+}
+
+Select:focus {
+    border: tall $info;
     outline: none;
 }
 
