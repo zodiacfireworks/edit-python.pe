@@ -29,7 +29,7 @@ This document explains how to contribute to the edit-python.pe project, the comm
 
 We use `poethepoet` (poe) as our task runner. Run the following commands as needed during development:
 
-- `uv run poe lint`: Runs the `ruff` linter (and checks types using `ty`).
+- `uv run poe lint`: Runs the `ruff` linter.
 - `uv run poe lint:format`: Formats the code using `ruff format`.
 - `uv run poe lint:types`: Checks types using `ty check`.
 - `uv run poe lint:docs`: Lints Markdown files using `markdownlint` (excludes `CHANGELOG.md`).
