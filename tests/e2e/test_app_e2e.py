@@ -11,6 +11,29 @@ from edit_python_pe.screens.member_form import MemberFormScreen
 from edit_python_pe.screens.save_loading import SaveLoadingScreen
 
 
+async def _wait_for_dashboard(pilot, app, max_range=50):
+    for _ in range(max_range):
+        await pilot.pause(0.1)
+        if isinstance(app.screen, DashboardScreen):
+            return
+
+async def _wait_for_save_loading_actions(pilot, app, max_range=50):
+    for _ in range(max_range):
+        await pilot.pause(0.1)
+        if (
+            isinstance(app.screen, SaveLoadingScreen)
+            and app.screen.query("#loading-actions")
+            and app.screen.query("#loading-actions").first().display
+        ):
+            return
+
+async def _wait_for_member_form(pilot, app, max_range=10):
+    for _ in range(max_range):
+        await pilot.pause(0.1)
+        if isinstance(app.screen, MemberFormScreen):
+            return
+
+
 class TestAppE2E:
     @pytest.mark.asyncio
     @patch("edit_python_pe.screens.loading.get_repo")
@@ -52,11 +75,7 @@ class TestAppE2E:
             # 3. Loading Screen
             # The background thread sets app repos; advance_screen fires after a
             # 1.5 s timer. Give it up to 5 s total to reach DashboardScreen in CI.
-            for _ in range(50):
-                await pilot.pause(0.1)
-                if isinstance(app.screen, DashboardScreen):
-                    break
-
+            await _wait_for_dashboard(pilot, app)
             assert isinstance(app.screen, DashboardScreen)
 
             # Verify repos were populated by LoadingScreen before proceeding
@@ -105,15 +124,7 @@ class TestAppE2E:
             screen.action_save()
 
             # 6. Save Loading Screen — give up to 5 s for the background work
-            for _ in range(50):
-                await pilot.pause(0.1)
-                if (
-                    isinstance(app.screen, SaveLoadingScreen)
-                    and app.screen.query("#loading-actions")
-                    and app.screen.query("#loading-actions").first().display
-                ):
-                    break
-
+            await _wait_for_save_loading_actions(pilot, app)
             assert isinstance(app.screen, SaveLoadingScreen)
             assert "was saved successfully" in str(
                 app.screen.query_one("#result-msg").render()
@@ -122,11 +133,7 @@ class TestAppE2E:
             # 7. Back to Dashboard
             app.pop_screen()
             await pilot.pause()
-
-            for _ in range(10):
-                await pilot.pause(0.1)
-                if isinstance(app.screen, MemberFormScreen):
-                    break
+            await _wait_for_member_form(pilot, app)
 
             # Now we are back at MemberFormScreen
             assert isinstance(app.screen, MemberFormScreen)
@@ -134,8 +141,5 @@ class TestAppE2E:
             # Click discard to go back to Dashboard
             app.pop_screen()
             await pilot.pause()
-            for _ in range(10):
-                await pilot.pause(0.1)
-                if isinstance(app.screen, DashboardScreen):
-                    break
+            await _wait_for_dashboard(pilot, app, max_range=10)
             assert isinstance(app.screen, DashboardScreen)

@@ -95,7 +95,7 @@ class SaveLoadingScreen(Screen):
                 logger.error("Error creating PR: %s", github_error_detail, exc_info=e)
             except Exception:
                 logger.error("Failed to extract GithubException details", exc_info=e)
-            
+
             error_message = _("An error occurred while saving. Please try again.")
             self.app.call_from_thread(self.show_error, error_message)
 

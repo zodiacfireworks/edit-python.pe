@@ -48,34 +48,9 @@ def _create_member_file(
     return name_file, file_path
 
 
-def load_file_into_form(
-    screen: MemberFormScreen,
-    filename: str,
-) -> None:
-    member_app = cast("MemberApp", screen.app)
-    path_md = os.path.join(
-        member_app.repo_path,
-        BLOG_DIR,
-        MEMBERS_DIR,
-        filename,
-    )
-
-    if not os.path.exists(path_md):
-        return
-    try:
-        content = _read_file(path_md)
-    except Exception as e:
-        import logging
-        logging.getLogger(__name__).exception("Error reading file %s", filename, exc_info=e)
-        member_app.exit(
-            message=_("Error reading file {filename}").format(filename=filename)
-        )
-        return
-
-    # Extract YAML frontmatter
+def _parse_yaml_frontmatter(content: str, screen: MemberFormScreen) -> None:
     yaml_match = re.search(r"---\n(.*?)---\n", content, re.DOTALL)
     yaml_data = {}
-
     if yaml_match:
         try:
             import yaml
@@ -83,92 +58,56 @@ def load_file_into_form(
             yaml_data = yaml.safe_load(yaml_match.group(1))
         except Exception:
             yaml_data = {}
-
         if not isinstance(yaml_data, dict):
             yaml_data = {}
-
     screen.name_input.value = yaml_data.get("author", "")
     screen.city_input.value = yaml_data.get("location", "")
 
-    # 1. Parse name and gravatar email
-    name_match = re.search(
-        r"^#\s+(.+)$",
-        content,
-        re.MULTILINE,
-    )
-
+def _parse_basic_fields(content: str, screen: MemberFormScreen) -> None:
+    name_match = re.search(r"^#\s+(.+)$", content, re.MULTILINE)
     if name_match:
         screen.name_input.value = name_match.group(1).strip()
 
-    gravatar_match = re.search(
-        r"```\{gravatar\}\s+(.+)$",
-        content,
-        re.MULTILINE,
-    )
-
+    gravatar_match = re.search(r"```\{gravatar\}\s+(.+)$", content, re.MULTILINE)
     if gravatar_match:
         screen.email_input.value = gravatar_match.group(1).strip()
 
-    # 2. Parse social networks from raw html block
+    city_match = re.search(r"^:Ciudad:\s+(.+)$", content, re.MULTILINE)
+    if city_match:
+        screen.city_input.value = city_match.group(1).strip()
+
+    homepage_match = re.search(r"^:Homepage:\s+(.+)$", content, re.MULTILINE)
+    if homepage_match:
+        screen.homepage_input.value = homepage_match.group(1).strip()
+
+def _parse_social_networks(content: str, screen: MemberFormScreen) -> None:
     social_block_match = re.search(
         r"```\{raw\} html\n(.*?)\n```",
         content,
         re.MULTILINE | re.DOTALL,
     )
-
     if social_block_match:
         social_html = social_block_match.group(1)
-        # Find all iconify-icon elements
         for match in re.finditer(
-            r'<a\s+[^>]*href="([^"]+)"[^>]*>'
-            r'\s*<iconify-icon\s+icon="simple-icons:([^"]+)"',
+            r'<a\s+[^>]*href="([^"]+)"[^>]*>\s*<iconify-icon\s+icon="simple-icons:([^"]+)"',
             social_html,
         ):
-            url = match.group(1)
-            platform = match.group(2)
-            screen.add_social_entry(platform)
-            last_entry = screen.social_entries[-1]
-            last_entry.url_input.value = url
+            screen.add_social_entry(match.group(2))
+            screen.social_entries[-1].url_input.value = match.group(1)
 
-    # 3. Parse Aliases
-    alias_match = re.search(
-        r"^:Aliases:\s+(.+)$",
-        content,
-        re.MULTILINE,
-    )
-
+def _parse_aliases(content: str, screen: MemberFormScreen) -> None:
+    alias_match = re.search(r"^:Aliases:\s+(.+)$", content, re.MULTILINE)
     if alias_match:
-        aliases_str = alias_match.group(1)
-        for alias_val in [a.strip() for a in aliases_str.split(",")]:
+        for alias_val in [a.strip() for a in alias_match.group(1).split(",")]:
             screen.add_alias_entry()
             screen.alias_entries[-1].alias_input.value = alias_val
 
-    # 4. Parse Ciudad and Homepage
-    city_match = re.search(
-        r"^:Ciudad:\s+(.+)$",
-        content,
-        re.MULTILINE,
-    )
-
-    if city_match:
-        screen.city_input.value = city_match.group(1).strip()
-
-    homepage_match = re.search(
-        r"^:Homepage:\s+(.+)$",
-        content,
-        re.MULTILINE,
-    )
-
-    if homepage_match:
-        screen.homepage_input.value = homepage_match.group(1).strip()
-
-    # 5. Parse Text Areas
+def _parse_text_areas(content: str, screen: MemberFormScreen) -> None:
     who_match = re.search(
         r"^###? ¿Quién eres.*?\?\s*\n(.*?)(?=\n###? |\Z)",
         content,
         re.MULTILINE | re.DOTALL,
     )
-
     if who_match:
         screen.who_area.text = who_match.group(1).strip()
 
@@ -177,7 +116,6 @@ def load_file_into_form(
         content,
         re.MULTILINE | re.DOTALL,
     )
-
     if python_match:
         screen.python_area.text = python_match.group(1).strip()
 
@@ -187,19 +125,43 @@ def load_file_into_form(
         content,
         re.MULTILINE | re.DOTALL,
     )
-
     if contrib_match:
         screen.contributions_area.text = contrib_match.group(1).strip()
 
     avail_match = re.search(
-        r"^###? ¿Estás.*?mentor.*?consultor.*?charlas.*?\?"
-        r"\s*\n(.*?)(?=\n###? |\Z)",
+        r"^###? ¿Estás.*?mentor.*?consultor.*?charlas.*?\?\s*\n(.*?)(?=\n###? |\Z)",
         content,
         re.MULTILINE | re.DOTALL,
     )
-
     if avail_match:
         screen.availability_area.text = avail_match.group(1).strip()
+
+def load_file_into_form(
+    screen: MemberFormScreen,
+    filename: str,
+) -> None:
+    member_app = cast("MemberApp", screen.app)
+    path_md = os.path.join(member_app.repo_path, BLOG_DIR, MEMBERS_DIR, filename)
+
+    if not os.path.exists(path_md):
+        return
+    try:
+        content = _read_file(path_md)
+    except Exception as e:
+        import logging
+        logging.getLogger(__name__).exception(
+            "Error reading file %s", filename, exc_info=e
+        )
+        member_app.exit(
+            message=_("Error reading file {filename}").format(filename=filename)
+        )
+        return
+
+    _parse_yaml_frontmatter(content, screen)
+    _parse_basic_fields(content, screen)
+    _parse_social_networks(content, screen)
+    _parse_aliases(content, screen)
+    _parse_text_areas(content, screen)
 
 
 def build_md_content(

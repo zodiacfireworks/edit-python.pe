@@ -217,17 +217,10 @@ class MemberFormScreen(Screen):
             self.alias_entries.remove(found)
             found.remove()
 
-    def save_member(self) -> None:
-        self.name_control.clear_error()
-        self.email_control.clear_error()
-        self.homepage_control.clear_error()
-        for se in self.social_entries:
-            se.clear_error()
-
+    def _validate_basic_fields(self) -> bool:
+        has_errors = False
         name = self.name_input.value.strip()
         email = self.email_input.value.strip()
-
-        has_errors = False
         if not name:
             self.name_control.show_error(_("Name is required."))
             has_errors = True
@@ -238,22 +231,17 @@ class MemberFormScreen(Screen):
             self.email_control.show_error(_("Invalid email format."))
             has_errors = True
 
-        city = self.city_input.value.strip()
         homepage = self.homepage_input.value.strip()
-        who = self.who_area.text.strip()
-        python_ = self.python_area.text.strip()
-        contributions = self.contributions_area.text.strip()
-        availability = self.availability_area.text.strip()
-
         if homepage and not URL_REGEX.match(homepage):
             self.homepage_control.show_error(_("Invalid homepage URL format."))
             has_errors = True
+        return has_errors
 
+    def _validate_social_entries(self) -> bool:
+        has_errors = False
         for se in self.social_entries:
             plat = se.select.value
             urlval = se.url_input.value.strip()
-
-            # XOR: if one is set but not the other
             if bool(plat) != bool(urlval):
                 se.show_error(
                     _("Both platform and URL must be provided if either is set.")
@@ -262,9 +250,29 @@ class MemberFormScreen(Screen):
             elif urlval and not URL_REGEX.match(urlval):
                 se.show_error(_("Invalid URL format for social network."))
                 has_errors = True
+        return has_errors
 
-        if has_errors:
+    def save_member(self) -> None:
+        self.name_control.clear_error()
+        self.email_control.clear_error()
+        self.homepage_control.clear_error()
+        for se in self.social_entries:
+            se.clear_error()
+
+        basic_errors = self._validate_basic_fields()
+        social_errors = self._validate_social_entries()
+
+        if basic_errors or social_errors:
             return
+
+        name = self.name_input.value.strip()
+        email = self.email_input.value.strip()
+        city = self.city_input.value.strip()
+        homepage = self.homepage_input.value.strip()
+        who = self.who_area.text.strip()
+        python_ = self.python_area.text.strip()
+        contributions = self.contributions_area.text.strip()
+        availability = self.availability_area.text.strip()
 
         aliases = []
         for row in self.alias_entries:
@@ -295,7 +303,9 @@ class MemberFormScreen(Screen):
         app = cast("MemberApp", self.app)
 
         if app.original_repo is None or app.forked_repo is None:
-            self.app.notify("GitHub repositories are not initialized.", severity="error")
+            self.app.notify(
+                "GitHub repositories are not initialized.", severity="error"
+            )
             return
 
         self.app.push_screen(

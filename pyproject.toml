@@ -148,6 +148,7 @@ select = [
   "UP",  # pyupgrade
   "B",  # flake8-bugbear
   "C4",  # flake8-comprehensions
+  "C90", # mccabe complexity
 ]
 ignore = [
   "D100",  # Missing docstring in public module
@@ -176,6 +177,9 @@ ignore = [
 [tool.ruff.lint.isort]
 known-first-party = ["edit_python_pe"]
 known-third-party = ["github", "pygit2", "textual", "yaml"]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
