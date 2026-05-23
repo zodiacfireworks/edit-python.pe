@@ -40,7 +40,7 @@ msgstr ""
 #: src/edit_python_pe/markdown_builder.py:58
 #, python-brace-format
 msgid "Error reading file {filename}: {error}"
-msgstr "Error al leer el archivo {nombre de archivo}: {error}"
+msgstr "Error al leer el archivo {filename}: {error}"
 
 #: src/edit_python_pe/components/alias_entry.py:12
 msgid "Alias"
