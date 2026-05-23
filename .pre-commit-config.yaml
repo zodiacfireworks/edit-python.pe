@@ -34,5 +34,6 @@ repos:
         description: Running tests for the app
         language: system
         entry: uv run poe test
+        pass_filenames: false
 
 default_stages: [pre-commit, pre-push]
