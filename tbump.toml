@@ -1,0 +1,29 @@
+[version]
+current = "0.2.10"
+regex = '''
+  (?P<major>\d+)
+  \.
+  (?P<minor>\d+)
+  \.
+  (?P<patch>\d+)
+'''
+
+[git]
+message_template = "bump version to {new_version}"
+tag_template = "v{new_version}"
+
+[[file]]
+src = "pyproject.toml"
+search = 'version = "{current_version}"'
+
+[[file]]
+src = "pyproject.toml"
+search = 'tags/v{current_version}.tar.gz'
+
+[[file]]
+src = "src/edit_python_pe/__about__.py"
+search = '__version__ = "{current_version}"'
+
+[[before_commit]]
+name = "Lock dependencies"
+cmd = "uv lock && git add uv.lock"
