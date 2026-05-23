@@ -11,8 +11,8 @@ class MemberApp(App):
         super().__init__()
         self.original_repo: Repository | None = None
         self.forked_repo: Repository | None = None
-        self.token: str | None = ""
-        self.repo_path: str | None = ""
+        self.token: str | None = None
+        self.repo_path: str | None = None
 
     def on_mount(self) -> None:
         self.push_screen(LanguageScreen())
