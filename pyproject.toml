@@ -135,7 +135,7 @@ cmd = "uv run pybabel compile -d src/edit_python_pe/locale"
 
 [tool.ruff]
 line-length = 88
-target-version = "py314"
+target-version = "py313"
 
 [tool.ruff.lint]
 select = [
