@@ -40,9 +40,9 @@ msgstr ""
 "pronta! 🎉"
 
 #: src/edit_python_pe/markdown_builder.py:71
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Error reading file {filename}"
-msgstr "Errore durante la lettura del file {filename}: {error}"
+msgstr "Errore durante la lettura del file {filename}"
 
 #: src/edit_python_pe/components/alias_entry.py:11
 msgid "Alias"
@@ -128,6 +128,8 @@ msgid ""
 "An unexpected error occurred while loading. Please try again or contact "
 "support."
 msgstr ""
+"Si è verificato un errore imprevisto durante il caricamento. Riprova "
+"o contatta l'assistenza."
 
 #: src/edit_python_pe/screens/loading.py:95
 msgid "Successfully authenticated!"
@@ -233,7 +235,7 @@ msgstr "Formato dell'URL della pagina iniziale non valido."
 
 #: src/edit_python_pe/screens/member_form.py:259
 msgid "Both platform and URL must be provided if either is set."
-msgstr ""
+msgstr "Sia la piattaforma che l'URL devono essere forniti se uno dei due è impostato."
 
 #: src/edit_python_pe/screens/member_form.py:263
 msgid "Invalid URL format for social network."
@@ -269,39 +271,8 @@ msgstr "Copia URL"
 
 #: src/edit_python_pe/screens/save_loading.py:99
 msgid "An error occurred while saving. Please try again."
-msgstr ""
+msgstr "Si è verificato un errore durante il salvataggio. Riprova."
 
 #: src/edit_python_pe/screens/save_loading.py:169
 msgid "URL copied to clipboard!"
 msgstr "URL copiato negli appunti!"
-
-#~ msgid ""
-#~ "Creating a new entry to `blog/members`"
-#~ " for {name} (alias: {first_alias})."
-#~ msgstr ""
-#~ "Creazione di una nuova voce in "
-#~ "`blog/members` per {name} (alias: "
-#~ "{first_alias})."
-
-#~ msgid "Changing an entry to `blog/members` for {name} (alias: {first_alias})."
-#~ msgstr ""
-#~ "Modifica di una voce in `blog/members`"
-#~ " per {name} (alias: {first_alias})."
-
-#~ msgid "Files in 'blog/members':"
-#~ msgstr "File in \"blog/membri\":"
-
-#~ msgid "Add"
-#~ msgstr "Aggiungere"
-
-#~ msgid "Member Form"
-#~ msgstr "Modulo membro"
-
-#~ msgid "File {name_file} edited, commit and changes sent to existing PR."
-#~ msgstr ""
-#~ "File {name_file} modificato, commit e "
-#~ "modifiche inviate al PR esistente."
-
-#~ msgid "File {name_file} saved, commit and PR ready."
-#~ msgstr "File {name_file} salvato, commit e PR pronti."
-

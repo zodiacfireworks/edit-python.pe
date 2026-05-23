@@ -38,9 +38,9 @@ msgid "Woohoo! {name_file} was saved successfully and your new PR is ready! 🎉
 msgstr "Oba! {name_file} foi salvo com sucesso e o seu novo PR está pronto! 🎉"
 
 #: src/edit_python_pe/markdown_builder.py:71
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Error reading file {filename}"
-msgstr "Erro ao ler o arquivo {filename}: {error}"
+msgstr "Erro ao ler o arquivo {filename}"
 
 #: src/edit_python_pe/components/alias_entry.py:11
 msgid "Alias"
@@ -126,6 +126,8 @@ msgid ""
 "An unexpected error occurred while loading. Please try again or contact "
 "support."
 msgstr ""
+"Ocorreu um erro inesperado ao carregar. Tente novamente ou contate o "
+"suporte."
 
 #: src/edit_python_pe/screens/loading.py:95
 msgid "Successfully authenticated!"
@@ -231,7 +233,7 @@ msgstr "Formato de URL da página inicial inválido."
 
 #: src/edit_python_pe/screens/member_form.py:259
 msgid "Both platform and URL must be provided if either is set."
-msgstr ""
+msgstr "Tanto a plataforma quanto a URL devem ser fornecidas se uma delas estiver definida."
 
 #: src/edit_python_pe/screens/member_form.py:263
 msgid "Invalid URL format for social network."
@@ -267,39 +269,8 @@ msgstr "Copiar URL"
 
 #: src/edit_python_pe/screens/save_loading.py:99
 msgid "An error occurred while saving. Please try again."
-msgstr ""
+msgstr "Ocorreu um erro ao salvar. Por favor, tente novamente."
 
 #: src/edit_python_pe/screens/save_loading.py:169
 msgid "URL copied to clipboard!"
 msgstr "URL copiado para a área de transferência!"
-
-#~ msgid ""
-#~ "Creating a new entry to `blog/members`"
-#~ " for {name} (alias: {first_alias})."
-#~ msgstr ""
-#~ "Criando uma nova entrada em "
-#~ "`blog/members` para {name} (alias: "
-#~ "{first_alias})."
-
-#~ msgid "Changing an entry to `blog/members` for {name} (alias: {first_alias})."
-#~ msgstr ""
-#~ "Alterando uma entrada para `blog/members` "
-#~ "para {name} (alias: {first_alias})."
-
-#~ msgid "Files in 'blog/members':"
-#~ msgstr "Arquivos em 'blog/membros':"
-
-#~ msgid "Add"
-#~ msgstr "Adicionar"
-
-#~ msgid "Member Form"
-#~ msgstr "Formulário de Membro"
-
-#~ msgid "File {name_file} edited, commit and changes sent to existing PR."
-#~ msgstr ""
-#~ "Arquivo {name_file} editado, confirmado e "
-#~ "alterações enviadas ao PR existente."
-
-#~ msgid "File {name_file} saved, commit and PR ready."
-#~ msgstr "Arquivo {name_file} salvo, commit e PR pronto."
-

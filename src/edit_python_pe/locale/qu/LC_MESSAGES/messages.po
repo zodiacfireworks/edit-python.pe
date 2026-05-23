@@ -42,9 +42,9 @@ msgstr ""
 "wakichisqaña! 🎉"
 
 #: src/edit_python_pe/markdown_builder.py:71
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Error reading file {filename}"
-msgstr "{filename} willañiqita ñawiriypi pantasqa: {error}."
+msgstr "{filename} willañiqita ñawiriypi pantasqa."
 
 #: src/edit_python_pe/components/alias_entry.py:11
 msgid "Alias"
@@ -63,7 +63,7 @@ msgstr "Allin hamuy abordo Python Perú llaqtaman"
 #: src/edit_python_pe/components/layout.py:18
 #: src/edit_python_pe/screens/language.py:75
 msgid "Proudly built with ❤️ in Perú"
-msgstr "Orgulloso construido con ❤️ en Perú"
+msgstr "Kusikuywan ❤️ Piruwpi ruwasqa"
 
 #: src/edit_python_pe/components/social_entry.py:33
 msgid "Social Network"
@@ -130,6 +130,8 @@ msgid ""
 "An unexpected error occurred while loading. Please try again or contact "
 "support."
 msgstr ""
+"Cargaspa mana suyasqa pantaymi rikurimun. Ama hina kaspa, wakmanta "
+"ruway utaq yanapakuyta maskhay."
 
 #: src/edit_python_pe/screens/loading.py:95
 msgid "Successfully authenticated!"
@@ -235,7 +237,7 @@ msgstr "Mana allin qallariy p'anqap URL formaton."
 
 #: src/edit_python_pe/screens/member_form.py:259
 msgid "Both platform and URL must be provided if either is set."
-msgstr ""
+msgstr "Plataformatawan URLtawanmi quna, mayqinpas churasqa kaptinqa."
 
 #: src/edit_python_pe/screens/member_form.py:263
 msgid "Invalid URL format for social network."
@@ -271,39 +273,8 @@ msgstr "URL nisqa copiy"
 
 #: src/edit_python_pe/screens/save_loading.py:99
 msgid "An error occurred while saving. Please try again."
-msgstr ""
+msgstr "Waqaychaspa pantaymi karqan. Ama hina kaspa, wakmanta ruway."
 
 #: src/edit_python_pe/screens/save_loading.py:169
 msgid "URL copied to clipboard!"
 msgstr "¡URL nisqa portapapeles nisqaman copiasqa!"
-
-#~ msgid ""
-#~ "Creating a new entry to `blog/members`"
-#~ " for {name} (alias: {first_alias})."
-#~ msgstr ""
-#~ "Musuq qillqasqata `blog/members` nisqaman "
-#~ "{name}paq (alias: {first_alias}) paqarichispa."
-
-#~ msgid "Changing an entry to `blog/members` for {name} (alias: {first_alias})."
-#~ msgstr ""
-#~ "Huk qillqasqata `blog/members` nisqaman tikray"
-#~ " {name} (alias: {first_alias}) nisqapaq."
-
-#~ msgid "Files in 'blog/members':"
-#~ msgstr "'blog/miembros' nisqapi kaq willañiqikuna:"
-
-#~ msgid "Add"
-#~ msgstr "Yapay"
-
-#~ msgid "Member Form"
-#~ msgstr "Formulario de Miembros nisqa"
-
-#~ msgid "File {name_file} edited, commit and changes sent to existing PR."
-#~ msgstr ""
-#~ "Willañiqi {suti_willakuy} llamk'achisqa, kamachiy"
-#~ " chaymanta tikrasqakuna kunan kaq PR "
-#~ "kaqman apachisqa."
-
-#~ msgid "File {name_file} saved, commit and PR ready."
-#~ msgstr "Willañiqi {suti_archivo} waqaychasqa, commit chaymanta PR wakichisqa."
-

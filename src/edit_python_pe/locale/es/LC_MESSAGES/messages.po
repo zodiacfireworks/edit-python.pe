@@ -38,9 +38,9 @@ msgid "Woohoo! {name_file} was saved successfully and your new PR is ready! 🎉
 msgstr "¡Hurra! ¡{name_file} se guardó exitosamente y tu nuevo PR está listo! 🎉"
 
 #: src/edit_python_pe/markdown_builder.py:71
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "Error reading file {filename}"
-msgstr "Error al leer el archivo {filename}: {error}"
+msgstr "Error al leer el archivo {filename}"
 
 #: src/edit_python_pe/components/alias_entry.py:11
 msgid "Alias"
@@ -126,6 +126,8 @@ msgid ""
 "An unexpected error occurred while loading. Please try again or contact "
 "support."
 msgstr ""
+"Se produjo un error inesperado al cargar. Intente de nuevo o contacte al "
+"soporte."
 
 #: src/edit_python_pe/screens/loading.py:95
 msgid "Successfully authenticated!"
@@ -231,7 +233,7 @@ msgstr "Formato de URL de la página principal no válido."
 
 #: src/edit_python_pe/screens/member_form.py:259
 msgid "Both platform and URL must be provided if either is set."
-msgstr ""
+msgstr "Se debe proporcionar la plataforma y la URL si se establece alguna."
 
 #: src/edit_python_pe/screens/member_form.py:263
 msgid "Invalid URL format for social network."
@@ -267,39 +269,8 @@ msgstr "Copiar URL"
 
 #: src/edit_python_pe/screens/save_loading.py:99
 msgid "An error occurred while saving. Please try again."
-msgstr ""
+msgstr "Ocurrió un error al guardar. Por favor intente nuevamente."
 
 #: src/edit_python_pe/screens/save_loading.py:169
 msgid "URL copied to clipboard!"
 msgstr "¡URL copiada al portapapeles!"
-
-#~ msgid ""
-#~ "Creating a new entry to `blog/members`"
-#~ " for {name} (alias: {first_alias})."
-#~ msgstr ""
-#~ "Creando una nueva entrada en "
-#~ "`blog/members` para {nombre} (alias: "
-#~ "{first_alias})."
-
-#~ msgid "Changing an entry to `blog/members` for {name} (alias: {first_alias})."
-#~ msgstr ""
-#~ "Cambiando una entrada a `blog/members` "
-#~ "para {nombre} (alias: {first_alias})."
-
-#~ msgid "Files in 'blog/members':"
-#~ msgstr "Archivos en 'blog/miembros':"
-
-#~ msgid "Add"
-#~ msgstr "Agregar"
-
-#~ msgid "Member Form"
-#~ msgstr "Formulario de miembro"
-
-#~ msgid "File {name_file} edited, commit and changes sent to existing PR."
-#~ msgstr ""
-#~ "Archivo {name_file} editado, confirmado y "
-#~ "cambios enviados al PR existente."
-
-#~ msgid "File {name_file} saved, commit and PR ready."
-#~ msgstr "Archivo {name_file} guardado, confirmado y PR listo."
-
