@@ -34,7 +34,9 @@ class MemberListScreen(Screen):
 
         app = cast("MemberApp", self.app)
 
-        md_files = glob.glob(os.path.join(app.repo_path, "blog", "members", "*.md"))
+        md_files = sorted(
+            glob.glob(os.path.join(app.repo_path, "blog", "members", "*.md"))
+        )
         options = []
         for f in md_files:
             basename = os.path.basename(f)
