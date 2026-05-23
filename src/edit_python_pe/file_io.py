@@ -34,6 +34,7 @@ def _write_authors_file(
         contents = ""
 
     alias = aliases[0] if aliases else name
-    file_content = f"\n{name}({alias}) <{email}>"
-    if file_content.strip() not in contents:
-        _append_file(file_content, file_path)
+    candidate = f"{name}({alias}) <{email}>"
+    normalized_lines = [line.strip() for line in contents.splitlines()]
+    if candidate not in normalized_lines:
+        _append_file(f"\n{candidate}", file_path)

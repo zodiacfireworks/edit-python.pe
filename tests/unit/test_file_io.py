@@ -31,7 +31,7 @@ class TestFileIO:
             assert email in args[0]
 
         # Case: author already present, should not append
-        existing_line = f"\\n{name}(alias1) <{email}>"
+        existing_line = f"\n{name}(alias1) <{email}>"
         with (
             patch(
                 "edit_python_pe.file_io._read_file", return_value=existing_line
