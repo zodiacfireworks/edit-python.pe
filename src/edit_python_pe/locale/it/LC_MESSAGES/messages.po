@@ -3,62 +3,63 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2026-05-23 05:29-0500\n"
+"POT-Creation-Date: 2026-05-23 14:12-0500\n"
 "PO-Revision-Date: 2025-09-05 02:05-0500\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: it <LL@li.org>\n"
 "Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Generated-By: Babel 2.18.0\n"
 
-#: src/edit_python_pe/github_client.py:25
+#: src/edit_python_pe/github_client.py:29
 msgid "Unauthorized access. Please check your access token."
 msgstr "Accesso non autorizzato. Controlla il tuo token di accesso."
 
-#: src/edit_python_pe/github_client.py:29
+#: src/edit_python_pe/github_client.py:33
 msgid "Repository not found. Please check your access token."
 msgstr "Archivio non trovato. Controlla il tuo token di accesso."
 
-#: src/edit_python_pe/github_client.py:106
+#: src/edit_python_pe/github_client.py:141
 #, python-brace-format
 msgid ""
-"Woohoo! Changes to {name_file} were successfully sent to your existing PR! 🎉"
+"Woohoo! Changes to {name_file} were successfully sent to your existing "
+"PR! 🎉"
 msgstr ""
-"Evviva! Le modifiche a {name_file} sono state inviate con successo alla tua "
-"PR esistente! 🎉"
+"Evviva! Le modifiche a {name_file} sono state inviate con successo alla "
+"tua PR esistente! 🎉"
 
-#: src/edit_python_pe/github_client.py:120
-#: src/edit_python_pe/github_client.py:135
+#: src/edit_python_pe/github_client.py:156
+#: src/edit_python_pe/github_client.py:171
 #, python-brace-format
 msgid "Woohoo! {name_file} was saved successfully and your new PR is ready! 🎉"
 msgstr ""
-"Evviva! {name_file} è stato salvato con successo e la tua nuova PR è pronta!"
-" 🎉"
+"Evviva! {name_file} è stato salvato con successo e la tua nuova PR è "
+"pronta! 🎉"
 
-#: src/edit_python_pe/markdown_builder.py:58
-#, python-brace-format
-msgid "Error reading file {filename}: {error}"
+#: src/edit_python_pe/markdown_builder.py:71
+#, fuzzy, python-brace-format
+msgid "Error reading file {filename}"
 msgstr "Errore durante la lettura del file {filename}: {error}"
 
-#: src/edit_python_pe/components/alias_entry.py:12
+#: src/edit_python_pe/components/alias_entry.py:11
 msgid "Alias"
 msgstr "Alias"
 
 #: src/edit_python_pe/components/alias_entry.py:13
-#: src/edit_python_pe/components/social_entry.py:37
+#: src/edit_python_pe/components/social_entry.py:38
 msgid "Delete"
 msgstr "Eliminare"
 
-#: src/edit_python_pe/components/layout.py:10
-#: src/edit_python_pe/screens/language.py:74
+#: src/edit_python_pe/components/layout.py:9
+#: src/edit_python_pe/screens/language.py:71
 msgid "Welcome aboard to Python Perú"
 msgstr "Benvenuti a bordo di Python Perù"
 
-#: src/edit_python_pe/components/layout.py:19
-#: src/edit_python_pe/screens/language.py:80
+#: src/edit_python_pe/components/layout.py:18
+#: src/edit_python_pe/screens/language.py:75
 msgid "Proudly built with ❤️ in Perú"
 msgstr "Orgogliosamente costruito con ❤️ in Perù"
 
@@ -70,141 +71,147 @@ msgstr "Rete sociale"
 msgid "Social network URL"
 msgstr "URL del social network"
 
-#: src/edit_python_pe/screens/auth.py:16
+#: src/edit_python_pe/screens/auth.py:21
 msgid "Please enter your GitHub personal access token: "
 msgstr "Inserisci il tuo token di accesso personale GitHub:"
 
-#: src/edit_python_pe/screens/auth.py:20
+#: src/edit_python_pe/screens/auth.py:25
 msgid "Login"
 msgstr "Login"
 
-#: src/edit_python_pe/screens/auth.py:22
-#: src/edit_python_pe/screens/loading.py:29
-#: src/edit_python_pe/screens/member_list.py:28
-#: src/edit_python_pe/screens/save_loading.py:50
+#: src/edit_python_pe/screens/auth.py:27
+#: src/edit_python_pe/screens/loading.py:41
+#: src/edit_python_pe/screens/member_list.py:29
+#: src/edit_python_pe/screens/save_loading.py:56
 msgid "Back"
 msgstr "Indietro"
 
-#: src/edit_python_pe/screens/auth.py:23
-#: src/edit_python_pe/screens/dashboard.py:22
-#: src/edit_python_pe/screens/language.py:57
-#: src/edit_python_pe/screens/language.py:78
-#: src/edit_python_pe/screens/loading.py:30
-#: src/edit_python_pe/screens/member_form.py:133
+#: src/edit_python_pe/screens/auth.py:28
+#: src/edit_python_pe/screens/dashboard.py:23
+#: src/edit_python_pe/screens/language.py:56
+#: src/edit_python_pe/screens/language.py:74
+#: src/edit_python_pe/screens/loading.py:42
+#: src/edit_python_pe/screens/member_form.py:134
 #: src/edit_python_pe/screens/member_list.py:30
-#: src/edit_python_pe/screens/save_loading.py:53
+#: src/edit_python_pe/screens/save_loading.py:59
 msgid "Quit"
 msgstr "Esci"
 
-#: src/edit_python_pe/screens/dashboard.py:20
+#: src/edit_python_pe/screens/dashboard.py:21
 msgid "Add New Member"
 msgstr "Aggiungi nuovo membro"
 
-#: src/edit_python_pe/screens/dashboard.py:21
+#: src/edit_python_pe/screens/dashboard.py:22
 msgid "Edit Existing Member"
 msgstr "Modifica membro esistente"
 
-#: src/edit_python_pe/screens/dashboard.py:36
+#: src/edit_python_pe/screens/dashboard.py:37
 msgid "See you next time!"
 msgstr "Alla prossima volta!"
 
-#: src/edit_python_pe/screens/language.py:48
-#: src/edit_python_pe/screens/language.py:76
+#: src/edit_python_pe/screens/language.py:49
+#: src/edit_python_pe/screens/language.py:72
 msgid "Select your language"
 msgstr "Seleziona la tua lingua"
 
 #: src/edit_python_pe/screens/language.py:55
-#: src/edit_python_pe/screens/language.py:77
+#: src/edit_python_pe/screens/language.py:73
 msgid "Continue"
 msgstr "Continuare"
 
-#: src/edit_python_pe/screens/loading.py:22
+#: src/edit_python_pe/screens/loading.py:32
 msgid "Authenticating and fetching repository..."
 msgstr "Autenticazione e recupero del repository..."
 
-#: src/edit_python_pe/screens/loading.py:80
+#: src/edit_python_pe/screens/loading.py:78
+msgid ""
+"An unexpected error occurred while loading. Please try again or contact "
+"support."
+msgstr ""
+
+#: src/edit_python_pe/screens/loading.py:95
 msgid "Successfully authenticated!"
 msgstr "Autenticato con successo!"
 
-#: src/edit_python_pe/screens/member_form.py:25
+#: src/edit_python_pe/screens/member_form.py:32
 msgid "Are you sure you want to discard your changes?"
 msgstr "Sei sicuro di voler scartare le tue modifiche?"
 
-#: src/edit_python_pe/screens/member_form.py:30
+#: src/edit_python_pe/screens/member_form.py:37
 #: src/edit_python_pe/screens/quit_confirm.py:18
 msgid "Cancel"
 msgstr "Annulla"
 
-#: src/edit_python_pe/screens/member_form.py:35
-#: src/edit_python_pe/screens/member_form.py:131
+#: src/edit_python_pe/screens/member_form.py:42
+#: src/edit_python_pe/screens/member_form.py:133
 msgid "Discard"
 msgstr "Scarta"
 
-#: src/edit_python_pe/screens/member_form.py:66
+#: src/edit_python_pe/screens/member_form.py:73
 msgid "Name"
 msgstr "Nome"
 
-#: src/edit_python_pe/screens/member_form.py:67
+#: src/edit_python_pe/screens/member_form.py:74
 msgid "Name:"
 msgstr "Nome:"
 
-#: src/edit_python_pe/screens/member_form.py:71
+#: src/edit_python_pe/screens/member_form.py:78
 msgid "Email"
 msgstr "E-mail"
 
-#: src/edit_python_pe/screens/member_form.py:72
+#: src/edit_python_pe/screens/member_form.py:79
 msgid "Email:"
 msgstr "E-mail:"
 
-#: src/edit_python_pe/screens/member_form.py:77
+#: src/edit_python_pe/screens/member_form.py:84
 msgid "Social Networks"
 msgstr "Reti sociali"
 
-#: src/edit_python_pe/screens/member_form.py:80
+#: src/edit_python_pe/screens/member_form.py:87
 msgid "Add Social Network"
 msgstr "Aggiungi rete sociale"
 
-#: src/edit_python_pe/screens/member_form.py:86
+#: src/edit_python_pe/screens/member_form.py:93
 msgid "Aliases"
 msgstr "Alias"
 
-#: src/edit_python_pe/screens/member_form.py:89
+#: src/edit_python_pe/screens/member_form.py:95
 msgid "Add Alias"
 msgstr "Aggiungi alias"
 
-#: src/edit_python_pe/screens/member_form.py:93
+#: src/edit_python_pe/screens/member_form.py:98
 msgid "City"
 msgstr "Città"
 
-#: src/edit_python_pe/screens/member_form.py:94
+#: src/edit_python_pe/screens/member_form.py:99
 msgid "City:"
 msgstr "Città:"
 
-#: src/edit_python_pe/screens/member_form.py:98
+#: src/edit_python_pe/screens/member_form.py:103
 msgid "Homepage"
 msgstr "Home page"
 
-#: src/edit_python_pe/screens/member_form.py:99
+#: src/edit_python_pe/screens/member_form.py:104
 msgid "Homepage:"
 msgstr "Sito web:"
 
-#: src/edit_python_pe/screens/member_form.py:105
+#: src/edit_python_pe/screens/member_form.py:110
 msgid "Who are you and what do you do?"
 msgstr "Chi sei e cosa fai?"
 
-#: src/edit_python_pe/screens/member_form.py:110
+#: src/edit_python_pe/screens/member_form.py:115
 msgid "How do you program in Python?"
 msgstr "Come si programma in Python?"
 
-#: src/edit_python_pe/screens/member_form.py:115
+#: src/edit_python_pe/screens/member_form.py:120
 msgid "Do you have any contributions to the Python community?"
 msgstr "Hai qualche contributo alla comunità Python?"
 
-#: src/edit_python_pe/screens/member_form.py:120
+#: src/edit_python_pe/screens/member_form.py:125
 msgid "Are you available for mentoring, consulting, talks?"
 msgstr "Sei disponibile per tutoraggio, consulenza, colloqui?"
 
-#: src/edit_python_pe/screens/member_form.py:127
+#: src/edit_python_pe/screens/member_form.py:131
 msgid "Save"
 msgstr "Salva"
 
@@ -224,15 +231,19 @@ msgstr "Formato e-mail non valido."
 msgid "Invalid homepage URL format."
 msgstr "Formato dell'URL della pagina iniziale non valido."
 
-#: src/edit_python_pe/screens/member_form.py:255
+#: src/edit_python_pe/screens/member_form.py:259
+msgid "Both platform and URL must be provided if either is set."
+msgstr ""
+
+#: src/edit_python_pe/screens/member_form.py:263
 msgid "Invalid URL format for social network."
 msgstr "Formato URL non valido per il social network."
 
-#: src/edit_python_pe/screens/member_list.py:20
+#: src/edit_python_pe/screens/member_list.py:23
 msgid "Select a member to edit:"
 msgstr "Seleziona un membro da modificare:"
 
-#: src/edit_python_pe/screens/member_list.py:25
+#: src/edit_python_pe/screens/member_list.py:27
 msgid "Edit"
 msgstr "Modifica"
 
@@ -244,31 +255,38 @@ msgstr "Sei sicuro di voler chiudere l'app?"
 msgid "Close"
 msgstr "Chiudi"
 
-#: src/edit_python_pe/screens/save_loading.py:42
+#: src/edit_python_pe/screens/save_loading.py:48
 msgid "Saving changes and creating PR..."
 msgstr "Salvataggio delle modifiche e creazione della PR..."
 
-#: src/edit_python_pe/screens/save_loading.py:51
+#: src/edit_python_pe/screens/save_loading.py:57
 msgid "Open PR"
 msgstr "Apri PR"
 
-#: src/edit_python_pe/screens/save_loading.py:52
+#: src/edit_python_pe/screens/save_loading.py:58
 msgid "Copy URL"
 msgstr "Copia URL"
 
-#: src/edit_python_pe/screens/save_loading.py:157
+#: src/edit_python_pe/screens/save_loading.py:99
+msgid "An error occurred while saving. Please try again."
+msgstr ""
+
+#: src/edit_python_pe/screens/save_loading.py:169
 msgid "URL copied to clipboard!"
 msgstr "URL copiato negli appunti!"
 
 #~ msgid ""
-#~ "Creating a new entry to `blog/members` for {name} (alias: {first_alias})."
+#~ "Creating a new entry to `blog/members`"
+#~ " for {name} (alias: {first_alias})."
 #~ msgstr ""
-#~ "Creazione di una nuova voce in `blog/members` per {name} (alias: "
+#~ "Creazione di una nuova voce in "
+#~ "`blog/members` per {name} (alias: "
 #~ "{first_alias})."
 
 #~ msgid "Changing an entry to `blog/members` for {name} (alias: {first_alias})."
 #~ msgstr ""
-#~ "Modifica di una voce in `blog/members` per {name} (alias: {first_alias})."
+#~ "Modifica di una voce in `blog/members`"
+#~ " per {name} (alias: {first_alias})."
 
 #~ msgid "Files in 'blog/members':"
 #~ msgstr "File in \"blog/membri\":"
@@ -281,7 +299,9 @@ msgstr "URL copiato negli appunti!"
 
 #~ msgid "File {name_file} edited, commit and changes sent to existing PR."
 #~ msgstr ""
-#~ "File {name_file} modificato, commit e modifiche inviate al PR esistente."
+#~ "File {name_file} modificato, commit e "
+#~ "modifiche inviate al PR esistente."
 
 #~ msgid "File {name_file} saved, commit and PR ready."
 #~ msgstr "File {name_file} salvato, commit e PR pronti."
+
