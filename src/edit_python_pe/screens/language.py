@@ -37,9 +37,11 @@ class LanguageScreen(Screen):
         options = []
         for _idx, lang_code in self.lang_map.items():
             try:
+                from babel.core import UnknownLocaleError
+
                 name = Locale(lang_code).get_display_name(lang_code)
                 display = str(name or lang_code).title()
-            except Exception:
+            except (UnknownLocaleError, ValueError):
                 display = lang_code
 
             options.append(display)
