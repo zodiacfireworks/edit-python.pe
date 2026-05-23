@@ -1,62 +1,82 @@
 [project]
 name = "edit-python-pe"
 version = "0.2.10"
-description = "Allows member and project profile editing onto python.pe git repository"
-readme = "README.md"
+description = "TUI Application for submitting membership requests to Python Perú community."
+readme = { file = "README.md", content-type = "text/markdown" }
+requires-python = ">=3.13.0,<4.0.0"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 authors = [
-    { name = "Jean-Pierre Chauvel", email = "jean.p.chauvel@gmail.com" },
+  { name = "Jean-Pierre Chauvel", email = "jean.p.chauvel@gmail.com" },
 ]
-requires-python = ">=3.13"
+maintainers = [
+  { name = "Jean-Pierre Chauvel", email = "jean.p.chauvel@gmail.com" },
+]
+keywords = [
+  "Management",
+  "Members",
+  "Peru",
+  "TUI",
+  "python.pe",
+]
 classifiers = [
-    "Development Status :: 4 - Beta",
-    "Intended Audience :: Developers",
-    "Topic :: Documentation :: Sphinx",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.13",
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Natural Language :: English",
+  "Natural Language :: French",
+  "Natural Language :: Indigenous/Local Languages",
+  "Natural Language :: Italian",
+  "Natural Language :: Portuguese",
+  "Natural Language :: Spanish",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
-module = "edit_python_pe"
 dependencies = [
-    "pygit2==1.18.2",
-    "textual==6.1.0",
-    "pygithub==2.8.1",
-    "pyyaml==6.0.2",
-    "platformdirs==4.4.0",
-    "babel==2.17.0",
+  "babel==2.17.0",
+  "platformdirs==4.4.0",
+  "pygit2==1.18.2",
+  "pygithub==2.8.1",
+  "pyyaml==6.0.2",
+  "textual==6.1.0",
 ]
-
-[project.license]
-file = "LICENSE"
 
 [project.urls]
-Homepage = "http://github.com/pythonpe/edit-python.pe"
+Changelog = "https://github.com/pythonpe/edit-python.pe/blob/main/CHANGELOG.md"
 Documentation = "https://github.com/pythonpe/edit-python.pe/blob/main/README.md"
-Repository = "http://github.com/pythonpe/edit-python.pe"
+Download = "https://github.com/pythonpe/edit-python.pe/archive/refs/tags/v0.2.10.tar.gz"
+Homepage = "http://github.com/pythonpe/edit-python.pe"
 Issues = "https://github.com/pythonpe/edit-python.pe/issues"
+Repository = "http://github.com/pythonpe/edit-python.pe"
 
 [project.scripts]
 edit-python-pe = "edit_python_pe.main:main"
 
-[build-system]
-requires = [
-    "hatchling",
+[dependency-groups]
+dev = [
+  "black>=25.1.0",
+  "deep-translator>=1.11.4",
+  "isort>=6.0.1",
+  "polib>=1.2.0",
+  "pre-commit>=4.3.0",
+  "pytest>=8.4.1",
+  "pytest-cov>=6.2.1",
+  "textual-dev==1.7.0",
+  "tomli-w>=1.2.0",
 ]
-build-backend = "hatchling.build"
 
-[tool.hatch.version]
-path = "src/edit_python_pe/__about__.py"
+[build-system]
+requires = ["uv_build>=0.9.18,<0.10.0"]
+build-backend = "uv_build"
 
 [tool.black]
 line-length = 79
 
-[dependency-groups]
-dev = [
-    "black>=25.1.0",
-    "deep-translator>=1.11.4",
-    "isort>=6.0.1",
-    "polib>=1.2.0",
-    "pre-commit>=4.3.0",
-    "pytest>=8.4.1",
-    "pytest-cov>=6.2.1",
-    "textual-dev==1.7.0",
-    "tomli-w>=1.2.0",
+[tool.uv.build-backend]
+module-name = "edit_python_pe"
+module-root = "src"
+source-include = [
+  "LICENSE",
+  "README.md",
+  "CHANGELOG.md",
 ]
