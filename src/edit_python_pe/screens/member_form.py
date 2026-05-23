@@ -250,8 +250,16 @@ class MemberFormScreen(Screen):
             has_errors = True
 
         for se in self.social_entries:
+            plat = se.select.value
             urlval = se.url_input.value.strip()
-            if urlval and not URL_REGEX.match(urlval):
+
+            # XOR: if one is set but not the other
+            if bool(plat) != bool(urlval):
+                se.show_error(
+                    _("Both platform and URL must be provided if either is set.")
+                )
+                has_errors = True
+            elif urlval and not URL_REGEX.match(urlval):
                 se.show_error(_("Invalid URL format for social network."))
                 has_errors = True
 

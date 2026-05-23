@@ -64,7 +64,7 @@ class TestAppE2E:
             assert app.forked_repo is not None
 
             # 4. Dashboard -> Add Member
-            await pilot.click("#dash-add")
+            app.screen.query_one("#dash-add").press()
             await pilot.pause()
             assert isinstance(app.screen, MemberFormScreen)
 
@@ -80,6 +80,7 @@ class TestAppE2E:
             screen.homepage_input.value = "not_a_url"
             if screen.social_entries:
                 screen.social_entries[-1].url_input.value = "not_a_social_url"
+                screen.social_entries[-1].select.value = "github"
 
             screen.action_save()
             await pilot.pause()
@@ -96,10 +97,12 @@ class TestAppE2E:
             screen.homepage_input.value = "https://example.com"
             if screen.social_entries:
                 screen.social_entries[-1].url_input.value = "https://github.com/john"
+                screen.social_entries[-1].select.value = "github"
+            if screen.alias_entries:
+                screen.alias_entries[-1].alias_input.value = "john-gh"
 
             await pilot.pause()
             screen.action_save()
-
 
             # 6. Save Loading Screen — give up to 5 s for the background work
             for _ in range(50):
