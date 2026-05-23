@@ -22,7 +22,8 @@ class TestMarkdownBuilder:
             mock_write_file.assert_called_once_with(file_content, file_path)
             assert name_file.startswith(expected_filename_prefix)
             assert name_file.endswith(".md")
-            assert "blog/members/" in file_path
+            import os
+            assert os.path.join("blog", "members") in file_path
             assert file_path.endswith(name_file)
 
         # Test with current_file provided

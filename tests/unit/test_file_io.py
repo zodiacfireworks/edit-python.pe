@@ -45,12 +45,10 @@ class TestFileIO:
     def test_read_file(self):
         file_path = "/tmp/testfile.txt"
         expected_content = "Hello, world!"
-        with patch("builtins.open", MagicMock()) as mock_open:
-            mock_open.return_value.__enter__.return_value.read.return_value = (
-                expected_content
-            )
+        from unittest.mock import mock_open
+        with patch("builtins.open", mock_open(read_data=expected_content)) as mock_open_file:
             result = _read_file(file_path)
-            mock_open.assert_called_with(file_path, encoding="utf-8")
+            mock_open_file.assert_called_with(file_path, encoding="utf-8")
             assert result == expected_content
 
     def test_append_file(self):

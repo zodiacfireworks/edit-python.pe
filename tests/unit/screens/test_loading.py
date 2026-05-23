@@ -41,13 +41,14 @@ class TestLoadingScreen:
                 if app.screen.query_one("#loading-actions").display:
                     break
             assert app.screen.query_one("#loading-actions").display is True
-            assert "unexpected error" in str(app.screen.query_one("#result-msg").render())
+            assert "An unexpected error" in str(app.screen.query_one("#result-msg").render())
 
             # Test loading-back
             await pilot.click("#loading-back")
             await pilot.pause()
             # Popped screen
-
+            from edit_python_pe.screens.language import LanguageScreen
+            assert isinstance(app.screen, LanguageScreen)
     @pytest.mark.asyncio
     @patch("edit_python_pe.screens.loading.get_repo")
     async def test_loading_screen_quit(self, mock_get):
