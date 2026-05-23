@@ -24,7 +24,6 @@ classifiers = [
   "Intended Audience :: Developers",
   "Natural Language :: English",
   "Natural Language :: French",
-  "Natural Language :: Indigenous/Local Languages",
   "Natural Language :: Italian",
   "Natural Language :: Portuguese",
   "Natural Language :: Spanish",
@@ -45,9 +44,9 @@ dependencies = [
 Changelog = "https://github.com/pythonpe/edit-python.pe/blob/main/CHANGELOG.md"
 Documentation = "https://github.com/pythonpe/edit-python.pe/blob/main/README.md"
 Download = "https://github.com/pythonpe/edit-python.pe/archive/refs/tags/v0.2.10.tar.gz"
-Homepage = "http://github.com/pythonpe/edit-python.pe"
+Homepage = "https://github.com/pythonpe/edit-python.pe"
 Issues = "https://github.com/pythonpe/edit-python.pe/issues"
-Repository = "http://github.com/pythonpe/edit-python.pe"
+Repository = "https://github.com/pythonpe/edit-python.pe"
 
 [project.scripts]
 edit-python-pe = "edit_python_pe.main:main"
