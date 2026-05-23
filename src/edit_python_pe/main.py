@@ -96,7 +96,7 @@ class LabeledInput(Vertical):
     @value.setter
     def value(self, v: str):
         self._value = v
-        self.query_one(selector="#input").value = v
+        self.query_one(selector="#input").value = v  # type: ignore
 
 
 class SocialEntry(Horizontal):
@@ -160,7 +160,7 @@ class AliasEntry(Horizontal):
 
 
 class MemberApp(App):
-    """Single app that toggles between a file list and a form while connected to a GitHub fork+push flow."""
+    """Single app that toggles between a file list and a form while connected to a GitHub fork+push flow."""  # noqa: E501
 
     def __init__(
         self,
@@ -176,7 +176,7 @@ class MemberApp(App):
         self.repo_path = repo_path
 
     def compose(self) -> ComposeResult:
-        # Two main containers: self.list_container for the file list, self.form_container for the form.
+        # Two main containers: self.list_container for the file list, self.form_container for the form.  # noqa: E501
         self.list_container = Vertical()
         yield self.list_container
 
@@ -314,9 +314,9 @@ class MemberApp(App):
         self.alias_container.remove_children()
 
     def on_list_view_selected(self, event: ListView.Selected) -> None:
-        """User clicked on a file in the list. Parse it into the form fields."""
+        """User clicked on a file in the list. Parse it into the form fields."""  # noqa: E501
         item_text_widget = event.item.children[0]
-        filename = item_text_widget.content
+        filename = item_text_widget.content  # type: ignore
         self.current_file = filename
 
         self.clear_form()
@@ -351,9 +351,10 @@ class MemberApp(App):
             self.remove_alias_entry(index)
 
     def add_social_entry(
-        self, value: str | NoSelection = Select.BLANK
+        self,
+        value: str | NoSelection = Select.BLANK,  # type: ignore
     ) -> None:
-        new_entry = SocialEntry(self.social_index, value)
+        new_entry = SocialEntry(self.social_index, value)  # type: ignore
         self.social_index += 1
         self.social_entries.append(new_entry)
         self.social_container.mount(new_entry)
@@ -407,7 +408,7 @@ class MemberApp(App):
             plat = se.select.value
             urlval = se.url_input.value.strip()
             if plat and urlval:
-                socials.append((plat, urlval))
+                socials.append((str(plat), urlval))
 
         # Build the markdown doc as per the provided guide
         md_content = build_md_content(

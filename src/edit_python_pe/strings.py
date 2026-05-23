@@ -84,10 +84,10 @@ MD_CONTENT = {
     "yaml_excerpt": "excerpt: 1",
     "yaml_end": "---",
     "header_name": "# {name}",
-    "gravatar_block": '```{{gravatar}} {email}\n---\nwidth: 200\nclass: "member-gravatar"\n---\n```',
+    "gravatar_block": '```{{gravatar}} {email}\n---\nwidth: 200\nclass: "member-gravatar"\n---\n```',  # noqa: E501
     "social_block_start": "```{{raw}} html",
     "social_ul_start": '<ul class="social-media profile">',
-    "social_li": '    <li>\n        <a class="external reference" href="{url}">\n            <iconify-icon icon="simple-icons:{platform}" style="font-size:2em"></iconify-icon>\n        </a>\n    </li>',
+    "social_li": '    <li>\n        <a class="external reference" href="{url}">\n            <iconify-icon icon="simple-icons:{platform}" style="font-size:2em"></iconify-icon>\n        </a>\n    </li>',  # noqa: E501
     "social_ul_end": "</ul>",
     "social_block_end": "```",
     "aliases": ":Aliases: {aliases}",
@@ -97,5 +97,5 @@ MD_CONTENT = {
     "section_who": "### ¿Quién eres y a qué te dedicas?",
     "section_python": "### ¿Cómo programas en Python?",
     "section_contrib": "### ¿Tienes algún aporte a la comunidad de Python?",
-    "section_avail": "### ¿Estás disponible para hacer mentoring, consultorías, charlas?",
+    "section_avail": "### ¿Estás disponible para hacer mentoring, consultorías, charlas?",  # noqa: E501
 }

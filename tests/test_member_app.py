@@ -1,7 +1,8 @@
 import os
 import sys
 import unittest
-from unittest.mock import MagicMock, patch
+import unittest.mock
+from unittest.mock import ANY, MagicMock, patch
 
 sys.path.insert(
     0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../src"))
@@ -42,14 +43,14 @@ class TestMemberApp(unittest.TestCase):
             def __init__(self):
                 self.text = ""
 
-        self.app.name_input = StubInput()
-        self.app.email_input = StubInput()
-        self.app.city_input = StubInput()
-        self.app.homepage_input = StubInput()
-        self.app.who_area = StubTextArea()
-        self.app.python_area = StubTextArea()
-        self.app.contributions_area = StubTextArea()
-        self.app.availability_area = StubTextArea()
+        self.app.name_input = StubInput()  # type: ignore
+        self.app.email_input = StubInput()  # type: ignore
+        self.app.city_input = StubInput()  # type: ignore
+        self.app.homepage_input = StubInput()  # type: ignore
+        self.app.who_area = StubTextArea()  # type: ignore
+        self.app.python_area = StubTextArea()  # type: ignore
+        self.app.contributions_area = StubTextArea()  # type: ignore
+        self.app.availability_area = StubTextArea()  # type: ignore
 
         # Patch remove method for entries to avoid Textual lifecycle errors
         # Use stub classes for entries with .remove() method
@@ -76,7 +77,7 @@ class TestMemberApp(unittest.TestCase):
     def test_add_social_entry(self):
         # Patch add_social_entry to use stub
         self.app.social_entries = []
-        self.app.social_container.mount = MagicMock()
+        self.app.social_container.mount = MagicMock()  # type: ignore
         # Patch mount to accept any object
         self.app.social_container.mount = lambda x: None  # type: ignore
 
@@ -84,10 +85,10 @@ class TestMemberApp(unittest.TestCase):
             entry = self.StubSocialEntry()
             entry.index = self.app.social_index
             self.app.social_index += 1
-            self.app.social_entries.append(entry)
-            self.app.social_container.mount(entry)
+            self.app.social_entries.append(entry)  # type: ignore
+            self.app.social_container.mount(entry)  # type: ignore
 
-        self.app.add_social_entry = stub_add_social_entry
+        self.app.add_social_entry = stub_add_social_entry  # type: ignore
         initial_count = len(self.app.social_entries)
         self.app.add_social_entry("")
         self.assertEqual(len(self.app.social_entries), initial_count + 1)
@@ -104,8 +105,8 @@ class TestMemberApp(unittest.TestCase):
         self.app.contributions_area.text = "Filled Contributions"
         self.app.availability_area.text = "Filled Available"
         # Add social and alias entries
-        self.app.social_entries = [self.StubSocialEntry()]
-        self.app.alias_entries = [self.StubAliasEntry()]
+        self.app.social_entries = [self.StubSocialEntry()]  # type: ignore
+        self.app.alias_entries = [self.StubAliasEntry()]  # type: ignore
 
         # Simulate pressing the 'Añadir' button on the list screen
         class DummyButton:
@@ -114,7 +115,7 @@ class TestMemberApp(unittest.TestCase):
         class DummyEvent:
             button = DummyButton()
 
-        self.app.on_button_pressed(DummyEvent())
+        self.app.on_button_pressed(DummyEvent())  # type: ignore
         # After pressing, form should be cleared and current_file should be None
         self.assertEqual(self.app.name_input.value, "")
         self.assertEqual(self.app.email_input.value, "")
@@ -137,7 +138,7 @@ class TestMemberApp(unittest.TestCase):
     def test_add_alias_entry(self):
         # Patch add_alias_entry to use stub
         self.app.alias_entries = []
-        self.app.alias_container.mount = MagicMock()
+        self.app.alias_container.mount = MagicMock()  # type: ignore
         # Patch mount to accept any object
         self.app.alias_container.mount = lambda x: None  # type: ignore
 
@@ -145,10 +146,10 @@ class TestMemberApp(unittest.TestCase):
             entry = self.StubAliasEntry()
             entry.index = self.app.alias_index
             self.app.alias_index += 1
-            self.app.alias_entries.append(entry)
-            self.app.alias_container.mount(entry)
+            self.app.alias_entries.append(entry)  # type: ignore
+            self.app.alias_container.mount(entry)  # type: ignore
 
-        self.app.add_alias_entry = stub_add_alias_entry
+        self.app.add_alias_entry = stub_add_alias_entry  # type: ignore
         initial_count = len(self.app.alias_entries)
         self.app.add_alias_entry()
         self.assertEqual(len(self.app.alias_entries), initial_count + 1)
@@ -354,18 +355,18 @@ class TestMemberApp(unittest.TestCase):
             entry = self.StubSocialEntry()
             entry.index = self.app.social_index
             self.app.social_index += 1
-            self.app.social_entries.append(entry)
-            self.app.social_container.mount(entry)
+            self.app.social_entries.append(entry)  # type: ignore
+            self.app.social_container.mount(entry)  # type: ignore
 
         def stub_add_alias_entry():
             entry = self.StubAliasEntry()
             entry.index = self.app.alias_index
             self.app.alias_index += 1
-            self.app.alias_entries.append(entry)
-            self.app.alias_container.mount(entry)
+            self.app.alias_entries.append(entry)  # type: ignore
+            self.app.alias_container.mount(entry)  # type: ignore
 
-        self.app.add_social_entry = stub_add_social_entry
-        self.app.add_alias_entry = stub_add_alias_entry
+        self.app.add_social_entry = stub_add_social_entry  # type: ignore
+        self.app.add_alias_entry = stub_add_alias_entry  # type: ignore
         self.app.add_social_entry("")
         self.app.add_alias_entry()
         self.app.clear_form()
@@ -411,18 +412,18 @@ class: "member-gravatar"
             entry = self.StubSocialEntry()
             entry.index = self.app.social_index
             self.app.social_index += 1
-            self.app.social_entries.append(entry)
-            self.app.social_container.mount(entry)
+            self.app.social_entries.append(entry)  # type: ignore
+            self.app.social_container.mount(entry)  # type: ignore
 
         def stub_add_alias_entry():
             entry = self.StubAliasEntry()
             entry.index = self.app.alias_index
             self.app.alias_index += 1
-            self.app.alias_entries.append(entry)
-            self.app.alias_container.mount(entry)
+            self.app.alias_entries.append(entry)  # type: ignore
+            self.app.alias_container.mount(entry)  # type: ignore
 
-        self.app.add_social_entry = stub_add_social_entry
-        self.app.add_alias_entry = stub_add_alias_entry
+        self.app.add_social_entry = stub_add_social_entry  # type: ignore
+        self.app.add_alias_entry = stub_add_alias_entry  # type: ignore
         # Patch clear_form to avoid resetting stubs
         self.app.clear_form = lambda: None  # type: ignore
         load_file_into_form(self.app, "fake.md")
@@ -468,9 +469,9 @@ class TestMainFunction(unittest.TestCase):
         mock_get_repo.assert_called_once()
         mock_fork_repo.assert_called_once()
         mock_member_app.assert_called_once_with(
-            unittest.mock.ANY,
-            unittest.mock.ANY,
-            unittest.mock.ANY,
-            unittest.mock.ANY,
+            ANY,
+            ANY,
+            ANY,
+            ANY,
         )
         mock_app_instance.run.assert_called_once()
