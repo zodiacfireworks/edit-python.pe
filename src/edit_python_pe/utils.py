@@ -34,7 +34,7 @@ def _compute_file_name(aliases: list[str], name: str, email: str) -> str:
     else:
         alias_for_name = name.lower().replace(" ", "_")
 
-    sha_hash = hashlib.sha1(
+    sha_hash = hashlib.sha256(
         (alias_for_name + email + datetime.now().isoformat()).encode("utf-8")
     ).hexdigest()[:8]
     return f"{alias_for_name}-{sha_hash}.md"
@@ -188,9 +188,9 @@ def create_pr(
     pr_title = commit_msg
     first_alias = aliases[0] if aliases else ""
     pr_body = (
-        f"Changing an entry to `blog/members` for {name} (alias: {first_alias})."
+        f"Changing an entry to `blog/members` for {name} (alias: {first_alias})."  # noqa: E501
         if current_file
-        else f"Creating a new entry to `blog/members` for {name} (alias: {first_alias})."
+        else f"Creating a new entry to `blog/members` for {name} (alias: {first_alias})."  # noqa: E501
     )
     fork_owner = forked_repo.owner.login
     head_branch = f"{fork_owner}:main"
@@ -208,7 +208,7 @@ def create_pr(
                 pr_found = pr
                 break
         if pr_found:
-            # Push to the PR branch (simulate, as actual branch logic may differ)
+            # Push to the PR branch (simulate, as actual branch logic may differ)  # noqa: E501
             remote.push([repo.head.name], callbacks=callbacks)
             return MESSAGE_FILE_EDITED_PR.format(name_file=name_file)
         else:
@@ -311,14 +311,14 @@ def load_file_into_form(app: MemberApp, filename: str) -> None:
     if python_match:
         app.python_area.text = python_match.group(1).strip()
     contrib_match = re.search(
-        r"### ¿Tienes algún aporte a la comunidad de Python\?\n(.*?)(?=^### |\Z)",
+        r"### ¿Tienes algún aporte a la comunidad de Python\?\n(.*?)(?=^### |\Z)",  # noqa: E501
         content,
         re.DOTALL | re.MULTILINE,
     )
     if contrib_match:
         app.contributions_area.text = contrib_match.group(1).strip()
     avail_match = re.search(
-        r"### ¿Estás disponible para hacer mentoring, consultorías, charlas\?\n(.*?)(?=^### |\Z)",
+        r"### ¿Estás disponible para hacer mentoring, consultorías, charlas\?\n(.*?)(?=^### |\Z)",  # noqa: E501
         content,
         re.DOTALL | re.MULTILINE,
     )
