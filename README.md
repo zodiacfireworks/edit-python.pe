@@ -30,7 +30,7 @@ uv sync
 ### **For users seeking maximum speed**
 
 ```bash
-uvx edit-python-pe  
+uvx edit-python-pe
 # Next you'll be prompted for your access token
 ```
 
