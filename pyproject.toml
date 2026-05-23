@@ -141,7 +141,7 @@ ignore = [
 ]
 
 [tool.ruff.lint.per-file-ignores]
-"tests/*" = [
+"tests/**/*.py" = [
   "S101",  # Use of assert detected
   "S105",  # Use of hardcoded password string
   "S106",  # Use of hardcoded password function args
