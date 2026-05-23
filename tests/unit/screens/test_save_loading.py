@@ -87,7 +87,9 @@ class TestSaveLoadingScreen:
                     break
 
             assert app.screen.query_one("#loading-actions").display is True
-            assert "An error occurred while" in str(app.screen.query_one("#result-msg").render())
+            assert "An error occurred while" in str(
+                app.screen.query_one("#result-msg").render()
+            )
 
             # Back button should be visible and work
             await pilot.click("#btn-back")

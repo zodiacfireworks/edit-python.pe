@@ -302,7 +302,12 @@ class MemberFormScreen(Screen):
 
         app = cast("MemberApp", self.app)
 
-        if app.original_repo is None or app.forked_repo is None:
+        if (
+            app.original_repo is None
+            or app.forked_repo is None
+            or app.repo_path is None
+            or app.token is None
+        ):
             self.app.notify(
                 "GitHub repositories are not initialized.", severity="error"
             )

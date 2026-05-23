@@ -46,7 +46,10 @@ class TestFileIO:
         file_path = "/tmp/testfile.txt"
         expected_content = "Hello, world!"
         from unittest.mock import mock_open
-        with patch("builtins.open", mock_open(read_data=expected_content)) as mock_open_file:
+
+        with patch(
+            "builtins.open", mock_open(read_data=expected_content)
+        ) as mock_open_file:
             result = _read_file(file_path)
             mock_open_file.assert_called_with(file_path, encoding="utf-8")
             assert result == expected_content

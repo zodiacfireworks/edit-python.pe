@@ -33,6 +33,8 @@ class MemberListScreen(Screen):
     def on_mount(self) -> None:
 
         app = cast("MemberApp", self.app)
+        if app.repo_path is None:
+            return
 
         md_files = sorted(
             glob.glob(os.path.join(app.repo_path, "blog", "members", "*.md"))

@@ -63,6 +63,7 @@ def _parse_yaml_frontmatter(content: str, screen: MemberFormScreen) -> None:
     screen.name_input.value = yaml_data.get("author", "")
     screen.city_input.value = yaml_data.get("location", "")
 
+
 def _parse_basic_fields(content: str, screen: MemberFormScreen) -> None:
     name_match = re.search(r"^#\s+(.+)$", content, re.MULTILINE)
     if name_match:
@@ -80,6 +81,7 @@ def _parse_basic_fields(content: str, screen: MemberFormScreen) -> None:
     if homepage_match:
         screen.homepage_input.value = homepage_match.group(1).strip()
 
+
 def _parse_social_networks(content: str, screen: MemberFormScreen) -> None:
     social_block_match = re.search(
         r"```\{raw\} html\n(.*?)\n```",
@@ -95,12 +97,14 @@ def _parse_social_networks(content: str, screen: MemberFormScreen) -> None:
             screen.add_social_entry(match.group(2))
             screen.social_entries[-1].url_input.value = match.group(1)
 
+
 def _parse_aliases(content: str, screen: MemberFormScreen) -> None:
     alias_match = re.search(r"^:Aliases:\s+(.+)$", content, re.MULTILINE)
     if alias_match:
         for alias_val in [a.strip() for a in alias_match.group(1).split(",")]:
             screen.add_alias_entry()
             screen.alias_entries[-1].alias_input.value = alias_val
+
 
 def _parse_text_areas(content: str, screen: MemberFormScreen) -> None:
     who_match = re.search(
@@ -136,11 +140,14 @@ def _parse_text_areas(content: str, screen: MemberFormScreen) -> None:
     if avail_match:
         screen.availability_area.text = avail_match.group(1).strip()
 
+
 def load_file_into_form(
     screen: MemberFormScreen,
     filename: str,
 ) -> None:
     member_app = cast("MemberApp", screen.app)
+    if member_app.repo_path is None:
+        return
     path_md = os.path.join(member_app.repo_path, BLOG_DIR, MEMBERS_DIR, filename)
 
     if not os.path.exists(path_md):
@@ -149,6 +156,7 @@ def load_file_into_form(
         content = _read_file(path_md)
     except Exception as e:
         import logging
+
         logging.getLogger(__name__).exception(
             "Error reading file %s", filename, exc_info=e
         )

@@ -39,8 +39,7 @@ class TestGitClient:
                 from unittest.mock import call
 
                 repo_instance.index.add.assert_has_calls(
-                    [call(f"blog/members/{name_file}"), call("AUTHORS")],
-                    any_order=True
+                    [call(f"blog/members/{name_file}"), call("AUTHORS")], any_order=True
                 )
                 repo_instance.index.write.assert_called()
                 repo_instance.create_commit.assert_called()

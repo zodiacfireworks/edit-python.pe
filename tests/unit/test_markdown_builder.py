@@ -23,6 +23,7 @@ class TestMarkdownBuilder:
             assert name_file.startswith(expected_filename_prefix)
             assert name_file.endswith(".md")
             import os
+
             assert os.path.join("blog", "members") in file_path
             assert file_path.endswith(name_file)
 

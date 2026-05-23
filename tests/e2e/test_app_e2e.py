@@ -17,6 +17,7 @@ async def _wait_for_dashboard(pilot, app, max_range=50):
         if isinstance(app.screen, DashboardScreen):
             return
 
+
 async def _wait_for_save_loading_actions(pilot, app, max_range=50):
     for _ in range(max_range):
         await pilot.pause(0.1)
@@ -26,6 +27,7 @@ async def _wait_for_save_loading_actions(pilot, app, max_range=50):
             and app.screen.query("#loading-actions").first().display
         ):
             return
+
 
 async def _wait_for_member_form(pilot, app, max_range=10):
     for _ in range(max_range):
@@ -83,7 +85,9 @@ class TestAppE2E:
             assert app.forked_repo is not None
 
             # 4. Dashboard -> Add Member
-            app.screen.query_one("#dash-add").press()
+            from textual.widgets import Button
+
+            app.screen.query_one("#dash-add", Button).press()
             await pilot.pause()
             assert isinstance(app.screen, MemberFormScreen)
 
