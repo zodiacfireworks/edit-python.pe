@@ -43,9 +43,17 @@ def _create_member_file(
         else _compute_file_name(aliases, name, email)
     )
 
-    file_path = os.path.join(repo_path, BLOG_DIR, MEMBERS_DIR, name_file)
+    sanitized = os.path.basename(name_file)
+    if not sanitized or sanitized in (".", ".."):
+        raise ValueError("Invalid file name")
+
+    norm = os.path.normpath(os.path.join(MEMBERS_DIR, sanitized))
+    if not norm.startswith(MEMBERS_DIR):
+        raise ValueError("Directory traversal attempt")
+
+    file_path = os.path.join(repo_path, BLOG_DIR, MEMBERS_DIR, sanitized)
     _write_file(file_content, file_path)
-    return name_file, file_path
+    return sanitized, file_path
 
 
 def _parse_yaml_frontmatter(content: str, screen: MemberFormScreen) -> None:
@@ -148,7 +156,16 @@ def load_file_into_form(
     member_app = cast("MemberApp", screen.app)
     if member_app.repo_path is None:
         return
-    path_md = os.path.join(member_app.repo_path, BLOG_DIR, MEMBERS_DIR, filename)
+
+    sanitized = os.path.basename(filename)
+    if not sanitized or sanitized in (".", ".."):
+        return
+
+    norm = os.path.normpath(os.path.join(MEMBERS_DIR, sanitized))
+    if not norm.startswith(MEMBERS_DIR):
+        return
+
+    path_md = os.path.join(member_app.repo_path, BLOG_DIR, MEMBERS_DIR, sanitized)
 
     if not os.path.exists(path_md):
         return
