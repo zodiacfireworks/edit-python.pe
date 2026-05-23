@@ -68,40 +68,38 @@ class TestAppE2E:
             await pilot.pause()
             assert isinstance(app.screen, MemberFormScreen)
 
-            # 5.1 Validation test
-            await pilot.click("#member-form-add-alias")
-            await pilot.click("#member-form-add-social")
+            # 5.1 Validation test — call methods directly to avoid OutOfBounds
+            # errors on widgets inside the VerticalScroll that may be off-screen.
+            screen = app.screen
+            assert isinstance(screen, MemberFormScreen)
+            screen.add_alias_entry()
+            screen.add_social_entry()
+            await pilot.pause()
 
             # Fill with invalid URLs
-            app.screen.homepage_input.value = "not_a_url"
+            screen.homepage_input.value = "not_a_url"
+            if screen.social_entries:
+                screen.social_entries[-1].url_input.value = "not_a_social_url"
 
-            # Since social entries are dynamically added, get the last one
-            if app.screen.social_entries:
-                app.screen.social_entries[-1].url_input.value = "not_a_social_url"
-
-            await pilot.click("#member-form-save")
+            screen.action_save()
             await pilot.pause()
 
             # Validation should prevent navigating away
-            assert isinstance(
-                app.screen,
-                __import__(
-                    "edit_python_pe.screens.member_form"
-                ).screens.member_form.MemberFormScreen,
-            )
+            assert isinstance(app.screen, MemberFormScreen)
 
-            # 5. Member Form Screen
-            app.screen.name_input.value = "John Doe"
-            app.screen.email_input.value = "john@example.com"
-            app.screen.city_input.value = "Lima"
-            app.screen.homepage_input.value = "https://example.com"
-            if app.screen.social_entries:
-                app.screen.social_entries[
-                    -1
-                ].url_input.value = "https://github.com/john"
+            # 5. Fill valid data and save
+            screen = app.screen
+            assert isinstance(screen, MemberFormScreen)
+            screen.name_input.value = "John Doe"
+            screen.email_input.value = "john@example.com"
+            screen.city_input.value = "Lima"
+            screen.homepage_input.value = "https://example.com"
+            if screen.social_entries:
+                screen.social_entries[-1].url_input.value = "https://github.com/john"
 
             await pilot.pause()
-            await pilot.click("#member-form-save")
+            screen.action_save()
+
 
             # 6. Save Loading Screen — give up to 5 s for the background work
             for _ in range(50):
