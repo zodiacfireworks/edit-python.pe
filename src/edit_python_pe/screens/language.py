@@ -17,7 +17,10 @@ def get_available_languages() -> dict[int, str]:
     langs = ["en"]
     if locales_dir.exists():
         for item in sorted(locales_dir.iterdir()):
-            if item.is_dir() and (item / "LC_MESSAGES" / "messages.mo").exists():
+            if item.is_dir() and (
+                (item / "LC_MESSAGES" / "messages.mo").exists()
+                or (item / "LC_MESSAGES" / "messages.po").exists()
+            ):
                 langs.append(item.name)
 
     unique_langs = []
