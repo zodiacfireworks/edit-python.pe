@@ -39,7 +39,7 @@ msgstr "Oba! {name_file} foi salvo com sucesso e o seu novo PR estÃ¡ pronto! ðŸŽ
 #: src/edit_python_pe/markdown_builder.py:58
 #, python-brace-format
 msgid "Error reading file {filename}: {error}"
-msgstr "Erro ao ler o arquivo {nome do arquivo}: {error}"
+msgstr "Erro ao ler o arquivo {filename}: {error}"
 
 #: src/edit_python_pe/components/alias_entry.py:12
 msgid "Alias"
@@ -92,7 +92,7 @@ msgstr "Voltar"
 #: src/edit_python_pe/screens/member_list.py:30
 #: src/edit_python_pe/screens/save_loading.py:53
 msgid "Quit"
-msgstr "Desistir"
+msgstr "Sair"
 
 #: src/edit_python_pe/screens/dashboard.py:20
 msgid "Add New Member"

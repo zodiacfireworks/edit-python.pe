@@ -44,7 +44,7 @@ msgstr ""
 #: src/edit_python_pe/markdown_builder.py:58
 #, python-brace-format
 msgid "Error reading file {filename}: {error}"
-msgstr "{willaqpa sutin} willañiqita ñawiriypi pantasqa: {pantasqa}."
+msgstr "{filename} willañiqita ñawiriypi pantasqa: {error}."
 
 #: src/edit_python_pe/components/alias_entry.py:12
 msgid "Alias"

@@ -83,7 +83,7 @@ msgstr "Se connecter"
 #: src/edit_python_pe/screens/member_list.py:28
 #: src/edit_python_pe/screens/save_loading.py:50
 msgid "Back"
-msgstr "Dos"
+msgstr "Retour"
 
 #: src/edit_python_pe/screens/auth.py:23
 #: src/edit_python_pe/screens/dashboard.py:22
