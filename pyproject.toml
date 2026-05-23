@@ -86,6 +86,32 @@ sequence = [
 ]
 args = [{ name = "version", positional = true }]
 
+[tool.poe.tasks."messages:extract"]
+cmd = "uv run pybabel extract -F babel.cfg -o src/edit_python_pe/locale/messages.pot src/edit_python_pe"
+
+[tool.poe.tasks."messages:init"]
+sequence = [
+  "messages:extract",
+  { cmd = "uv run pybabel init -i src/edit_python_pe/locale/messages.pot -d src/edit_python_pe/locale -l ${lang}" }
+]
+args = [{ name = "lang", options = ["--lang"], required = true }]
+
+[tool.poe.tasks."messages:update"]
+sequence = [
+  "messages:extract",
+  { cmd = "uv run pybabel update -i src/edit_python_pe/locale/messages.pot -d src/edit_python_pe/locale" }
+]
+
+[tool.poe.tasks."messages:translate"]
+cmd = "uv run python bin/translate.py src/edit_python_pe/locale/${lang}/LC_MESSAGES/messages.po ${lang}"
+args = [{ name = "lang", options = ["--lang"], required = true }]
+
+[tool.poe.tasks.makemessages]
+ref = "messages:update"
+
+[tool.poe.tasks.compilemessages]
+cmd = "uv run pybabel compile -d src/edit_python_pe/locale"
+
 [tool.ruff]
 line-length = 79
 target-version = "py314"
