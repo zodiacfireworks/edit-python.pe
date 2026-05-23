@@ -24,8 +24,8 @@ uv sync
 
 1. Generate a [Personal access token
 (classic)](https://github.com/settings/tokens).
-2. Grant the scope: `public_repo`.
-3. Copy the token and keep it handy for the command below
+1. Grant the scope: `public_repo`.
+1. Copy the token and keep it handy for the command below
 
 ### **For users seeking maximum speed**
 
