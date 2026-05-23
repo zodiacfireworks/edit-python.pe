@@ -215,38 +215,33 @@ class TestUtilityFunctions(unittest.TestCase):
 
 
 class TestGetRepo(unittest.TestCase):
-    @patch("edit_python_pe.utils.getpass.getpass", return_value="valid-token")
     @patch("edit_python_pe.utils.Github")
-    def test_get_repo_success(self, mock_github, mock_getpass):
+    def test_get_repo_success(self, mock_github):
         mock_repo = MagicMock()
         mock_github.return_value.get_repo.return_value = mock_repo
-        token, repo = get_repo()
+        token, repo = get_repo("valid-token")
         self.assertEqual(token, "valid-token")
         self.assertEqual(repo, mock_repo)
 
-    @patch(
-        "edit_python_pe.utils.getpass.getpass", return_value="invalid-token"
-    )
     @patch("edit_python_pe.utils.Github")
-    def test_get_repo_bad_credentials(self, mock_github, mock_getpass):
+    def test_get_repo_bad_credentials(self, mock_github):
         from github.GithubException import BadCredentialsException
 
         mock_github.return_value.get_repo.side_effect = (
             BadCredentialsException(401, "Bad credentials", None)
         )
         with self.assertRaises(SystemExit):
-            get_repo()
+            get_repo("valid-token")
 
-    @patch("edit_python_pe.utils.getpass.getpass", return_value="valid-token")
     @patch("edit_python_pe.utils.Github")
-    def test_get_repo_github_exception(self, mock_github, mock_getpass):
+    def test_get_repo_github_exception(self, mock_github):
         from github.GithubException import GithubException
 
         mock_github.return_value.get_repo.side_effect = GithubException(
             404, "Not found", None
         )
         with self.assertRaises(SystemExit):
-            get_repo()
+            get_repo("valid-token")
 
 
 class TestForkRepo(unittest.TestCase):
