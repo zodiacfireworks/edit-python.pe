@@ -15,14 +15,14 @@ class TestAppE2E:
     @pytest.mark.asyncio
     @patch("edit_python_pe.screens.loading.get_repo")
     @patch("edit_python_pe.screens.loading.fork_repo")
-    @patch("edit_python_pe.github_client._commit_and_push")
+    @patch("edit_python_pe.screens.save_loading.create_pr")
     @patch("keyring.get_password", return_value=None)
     @patch("keyring.set_password")
     async def test_full_app_flow(
         self,
         mock_set_password,
         mock_get_password,
-        mock_commit_and_push,
+        mock_create_pr,
         mock_fork_repo,
         mock_get_repo_loading,
     ):
@@ -30,18 +30,10 @@ class TestAppE2E:
         mock_forked = MagicMock()
         mock_get_repo_loading.return_value = ("fake-token", mock_repo)
         mock_fork_repo.return_value = (tempfile.gettempdir(), mock_forked)
-        mock_commit_and_push.return_value = (
-            "Commit message",
-            MagicMock(),
-            MagicMock(),
-            MagicMock(),
+        mock_create_pr.return_value = (
+            "Woohoo! john_doe-abc12345.md was saved successfully and your new PR is ready! 🎉",
+            "https://github.com/fake/pr",
         )
-
-        # Create a mock PR
-        mock_pr = MagicMock()
-        mock_pr.html_url = "https://github.com/fake/pr"
-        mock_repo.get_pulls.return_value = []
-        mock_repo.create_pull.return_value = mock_pr
 
         app = MemberApp()
         async with app.run_test(size=(120, 100)) as pilot:
@@ -108,6 +100,7 @@ class TestAppE2E:
                     -1
                 ].url_input.value = "https://github.com/john"
 
+            await pilot.pause()
             await pilot.click("#member-form-save")
 
             # 6. Save Loading Screen — give up to 5 s for the background work
