@@ -184,7 +184,7 @@ version_files = [
   "pyproject.toml:tags/v$version.tar.gz",
 ]
 
-[[tool.commitizen.change_type_map]]
+[tool.commitizen.change_type_map]
 "feat" = "Features"
 "fix" = "Bug Fixes"
 "docs" = "Documentation"
