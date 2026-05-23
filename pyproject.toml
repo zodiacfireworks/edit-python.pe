@@ -102,7 +102,7 @@ sequence = [
 ]
 
 [tool.poe.tasks."messages:translate"]
-cmd = "uv run python bin/translate.py src/edit_python_pe/locale/${lang}/LC_MESSAGES/messages.po ${lang}"
+cmd = "uv run python scripts/translate.py src/edit_python_pe/locale/${lang}/LC_MESSAGES/messages.po ${lang}"
 args = [{ name = "lang", options = ["--lang"], required = true }]
 
 [tool.poe.tasks.makemessages]
@@ -142,6 +142,9 @@ ignore = [
   "D407",  # Missing dashed underline after section
   "S101",  # Use of assert detected (often used in tests)
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S105", "S108", "E501"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["edit_python_pe"]
