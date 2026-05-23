@@ -5,21 +5,25 @@ This document explains how to contribute to the edit-python.pe project, the comm
 ## 🤝 How to Contribute
 
 1. Make sure to find an open issue on [GitHub](https://github.com/pythonpe/edit-python.pe/issues).
-2. Fork the [edit-python.pe](https://github.com/pythonpe/edit-python.pe) repository.
-3. Clone the forked repository to your local machine.
-4. Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/).
-5. Install dependencies:
+1. Fork the [edit-python.pe](https://github.com/pythonpe/edit-python.pe) repository.
+1. Clone the forked repository to your local machine.
+1. Install [`uv`](https://docs.astral.sh/uv/getting-started/installation/).
+1. Install dependencies:
+
    ```bash
    uv sync
    ```
-6. Install the pre-commit hooks (enforces conventional commits and quality checks):
+
+1. Install the pre-commit hooks (enforces conventional commits and quality checks):
+
    ```bash
    uv run pre-commit install --hook-type commit-msg
    uv run pre-commit install
    ```
-7. Make your changes and cover them with tests.
-8. Push your changes to the forked repository.
-9. Open a pull request on [GitHub](https://github.com/pythonpe/edit-python.pe/pulls).
+
+1. Make your changes and cover them with tests.
+1. Push your changes to the forked repository.
+1. Open a pull request on [GitHub](https://github.com/pythonpe/edit-python.pe/pulls).
 
 ## 🚀 Development Commands
 
@@ -28,20 +32,21 @@ We use `poethepoet` (poe) as our task runner. Run the following commands as need
 - `uv run poe lint`: Runs the `ruff` linter (and checks types using `ty`).
 - `uv run poe lint:format`: Formats the code using `ruff format`.
 - `uv run poe lint:types`: Checks types using `ty check`.
+- `uv run poe lint:docs`: Lints Markdown files using `markdownlint` (excludes `CHANGELOG.md`).
 - `uv run poe test`: Runs the test coverage with `pytest`.
 
 ## 📝 Commit Style (Conventional Commits)
 
 This project enforces [Conventional Commits](https://www.conventionalcommits.org/) via a pre-commit hook powered by [Commitizen](https://commitizen-tools.github.io/commitizen/). Every commit message **must** follow this format:
 
-```
+```text
 <type>(<optional scope>): <short description>
 ```
 
 Allowed types:
 
 | Type | When to use |
-|------|-------------|
+| ------- | ------------------------------------------------------------ |
 | `feat` | A new feature |
 | `fix` | A bug fix |
 | `docs` | Documentation only changes |
@@ -54,7 +59,8 @@ Allowed types:
 | `chore` | Other changes that don't modify source or test files |
 
 **Examples:**
-```
+
+```text
 feat(auth): add GitHub OAuth login
 fix(markdown): handle missing homepage field gracefully
 docs: update README with uvx usage

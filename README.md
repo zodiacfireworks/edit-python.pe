@@ -28,8 +28,8 @@ Next, you'll be prompted for your access token and then you can seamlessly edit 
 To interact with the repository and submit your profile, you will need a GitHub Personal Access Token.
 
 1. Generate a [Personal access token (classic)](https://github.com/settings/tokens).
-2. **Required Scopes**: Grant the `user` and `repo` scopes.
-3. Copy the token and keep it handy.
+1. **Required Scopes**: Grant the `user` and `repo` scopes.
+1. Copy the token and keep it handy.
 
 ## 🤝 Contribute
 

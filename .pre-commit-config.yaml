@@ -12,6 +12,8 @@ repos:
         args:
           - --config
           - .markdownlint.yml
+          - --ignore
+          - CHANGELOG.md
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.15.6

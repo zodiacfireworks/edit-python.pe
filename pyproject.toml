@@ -77,6 +77,7 @@ build-backend = "uv_build"
 "lint" = "uv run ruff check --fix"
 "lint:format" = "uv run ruff format"
 "lint:types" = "uv run ty check"
+"lint:docs" = { shell = "markdownlint '**/*.md' --ignore CHANGELOG.md --config .markdownlint.yml" }
 "test" = "uv run pytest --cov edit_python_pe --cov-report xml:cobertura.xml --cov-report term --junitxml report.xml"
 "freeze" = "uv export --format requirements.txt --no-group dev --no-hashes --no-annotate --no-header --output-file requirements.txt"
 "freeze:dev" = "uv export --format requirements.txt --all-groups --no-hashes --no-annotate --no-header --output-file requirements.dev.txt"
