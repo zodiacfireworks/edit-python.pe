@@ -5,7 +5,7 @@ from pathlib import Path
 from .constants import EN_LOCALE
 
 default_locale = locale.getlocale()[0] or EN_LOCALE
-localedir = Path(__file__).parent.parent.parent / "translations"
+localedir = Path(__file__).parent / "locale"
 _ = gettext.translation(
     domain="messages",
     localedir=localedir,

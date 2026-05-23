@@ -1,0 +1,147 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-05-22 23:01-0500\n"
+"PO-Revision-Date: 2025-09-05 02:05-0500\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: src/edit_python_pe/strings.py:19
+msgid "Files in 'blog/members':"
+msgstr "Archivos en 'Blog/Miembros':"
+
+#: src/edit_python_pe/strings.py:20
+msgid "Member Form"
+msgstr "Formulario de miembro"
+
+#: src/edit_python_pe/strings.py:23
+msgid "Quit"
+msgstr "Abandonar"
+
+#: src/edit_python_pe/strings.py:24
+msgid "Add"
+msgstr "Agregar"
+
+#: src/edit_python_pe/strings.py:25
+msgid "Save"
+msgstr "Ahorrar"
+
+#: src/edit_python_pe/strings.py:26
+msgid "Back"
+msgstr "Atrás"
+
+#: src/edit_python_pe/strings.py:27
+msgid "Add Social Network"
+msgstr "Agregar red social"
+
+#: src/edit_python_pe/strings.py:28
+msgid "Add Alias"
+msgstr "Agregar alias"
+
+#: src/edit_python_pe/strings.py:29
+msgid "Delete"
+msgstr "Borrar"
+
+#: src/edit_python_pe/strings.py:32
+msgid "Name"
+msgstr "Nombre"
+
+#: src/edit_python_pe/strings.py:33
+msgid "Email"
+msgstr "Correo electrónico"
+
+#: src/edit_python_pe/strings.py:34
+msgid "City"
+msgstr "Ciudad"
+
+#: src/edit_python_pe/strings.py:35
+msgid "Homepage"
+msgstr "Página principal"
+
+#: src/edit_python_pe/strings.py:36
+msgid "Social network URL"
+msgstr "URL de redes sociales"
+
+#: src/edit_python_pe/strings.py:37
+msgid "Alias"
+msgstr "Alias"
+
+#: src/edit_python_pe/strings.py:40
+msgid "Social Network"
+msgstr "Red social"
+
+#: src/edit_python_pe/strings.py:43
+msgid "Social Networks"
+msgstr "Redes sociales"
+
+#: src/edit_python_pe/strings.py:44
+msgid "Aliases"
+msgstr "Alias"
+
+#: src/edit_python_pe/strings.py:45
+msgid "Who are you and what do you do?"
+msgstr "¿Quién eres y qué haces?"
+
+#: src/edit_python_pe/strings.py:46
+msgid "How do you program in Python?"
+msgstr "¿Cómo se programa en Python?"
+
+#: src/edit_python_pe/strings.py:47
+msgid "Do you have any contributions to the Python community?"
+msgstr "¿Tiene alguna contribución a la comunidad de Python?"
+
+#: src/edit_python_pe/strings.py:48
+msgid "Are you available for mentoring, consulting, talks?"
+msgstr "¿Está disponible para tutoría, consultoría, conversaciones?"
+
+#: src/edit_python_pe/strings.py:52
+msgid "Please enter your GitHub personal access token: "
+msgstr "Ingrese su token de acceso personal GitHub:"
+
+#: src/edit_python_pe/strings.py:54
+msgid "See you next time!"
+msgstr "¡Nos vemos la próxima vez!"
+
+#: src/edit_python_pe/strings.py:55 src/edit_python_pe/strings.py:72
+#, python-brace-format
+msgid "Error reading file {filename}: {error}"
+msgstr "Error de lectura del archivo {nombre de archivo}: {error}"
+
+#: src/edit_python_pe/strings.py:57
+msgid "Unauthorized access. Please check your access token."
+msgstr "Acceso no autorizado. Verifique su token de acceso."
+
+#: src/edit_python_pe/strings.py:60
+msgid "Repository not found. Please check your access token."
+msgstr "Repositorio no encontrado. Verifique su token de acceso."
+
+#: src/edit_python_pe/strings.py:63
+#, python-brace-format
+msgid "File {name_file} edited, commit and changes sent to existing PR."
+msgstr "Archivo {name_file} editado, confirmación y cambios enviados a Pr."
+
+#: src/edit_python_pe/strings.py:65
+#, python-brace-format
+msgid "File {name_file} saved, commit and PR ready."
+msgstr "Archivo {name_file} guardado, confirmación y PR listo."
+
+#: src/edit_python_pe/strings.py:67
+#, python-brace-format
+msgid "Creating a new entry to `blog/members` for {name} (alias: {first_alias})."
+msgstr ""
+"Creación de una nueva entrada a `Blog/Members` para {name} (alias: "
+"{First_alias})."
+
+#: src/edit_python_pe/strings.py:70
+#, python-brace-format
+msgid "Changing an entry to `blog/members` for {name} (alias: {first_alias})."
+msgstr "Cambiar una entrada a `Blog/Members` para {name} (alias: {First_alias})."
+
