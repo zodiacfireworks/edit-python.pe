@@ -1,4 +1,3 @@
-import getpass
 import hashlib
 import os
 import re
@@ -14,17 +13,9 @@ from github.Repository import Repository
 from platformdirs import user_data_dir
 
 if TYPE_CHECKING:
-    from .main import MemberApp
+    from .main import MainScreen, MemberApp
 
-from .strings import (
-    MD_CONTENT,
-    MESSAGE_FILE_EDITED_PR,
-    MESSAGE_FILE_SAVED_PR,
-    MESSAGE_LOAD_FILE_ERROR,
-    MESSAGE_PROMPT_FOR_GITHUB_TOKEN,
-    MESSAGE_REPO_NOT_FOUND,
-    MESSAGE_UNAUTHORIZED,
-)
+from .strings import MD_CONTENT, _
 
 
 def _compute_file_name(aliases: list[str], name: str, email: str) -> str:
@@ -128,17 +119,16 @@ def _get_alias(aliases: list[str], name: str) -> str:
     return name
 
 
-def get_repo() -> tuple[str, Repository]:
-    token = getpass.getpass(MESSAGE_PROMPT_FOR_GITHUB_TOKEN)
+def get_repo(token: str) -> tuple[str, Repository]:
     g = Github(token)
 
     try:
         return token, g.get_repo("pythonpe/python.pe")
     except BadCredentialsException:
-        print(MESSAGE_UNAUTHORIZED)
+        print(_("Unauthorized access. Please check your access token."))
         exit(1)
     except GithubException:
-        print(MESSAGE_REPO_NOT_FOUND)
+        print(_("Repository not found. Please check your access token."))
         exit(1)
 
 
@@ -210,7 +200,9 @@ def create_pr(
         if pr_found:
             # Push to the PR branch (simulate, as actual branch logic may differ)  # noqa: E501
             remote.push([repo.head.name], callbacks=callbacks)
-            return MESSAGE_FILE_EDITED_PR.format(name_file=name_file)
+            return _(
+                "File {name_file} edited, commit and changes sent to existing PR."  # noqa: E501
+            ).format(name_file=name_file)
         else:
             original_repo.create_pull(
                 title=pr_title,
@@ -218,7 +210,9 @@ def create_pr(
                 head=head_branch,
                 base=base_branch,
             )
-            return MESSAGE_FILE_SAVED_PR.format(name_file=name_file)
+            return _("File {name_file} saved, commit and PR ready.").format(
+                name_file=name_file
+            )
     else:
         original_repo.create_pull(
             title=pr_title,
@@ -226,18 +220,25 @@ def create_pr(
             head=head_branch,
             base=base_branch,
         )
-        return MESSAGE_FILE_SAVED_PR.format(name_file=name_file)
+        return _("File {name_file} saved, commit and PR ready.").format(
+            name_file=name_file
+        )
 
 
-def load_file_into_form(app: MemberApp, filename: str) -> None:
-    path_md = os.path.join(app.repo_path, "blog", "members", filename)
+def load_file_into_form(app: MainScreen, filename: str) -> None:
+    from typing import cast
+
+    member_app = cast("MemberApp", app.app)
+    path_md = os.path.join(member_app.repo_path, "blog", "members", filename)
     if not os.path.exists(path_md):
         return
     try:
         content = _read_file(path_md)
     except Exception as e:
-        app.exit(
-            message=MESSAGE_LOAD_FILE_ERROR.format(filename=filename, error=e)
+        member_app.exit(
+            message=_("Error reading file {filename}: {error}").format(
+                filename=filename, error=e
+            )
         )
         return
 
