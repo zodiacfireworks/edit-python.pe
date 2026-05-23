@@ -94,7 +94,7 @@ msgstr "Indietro"
 #: src/edit_python_pe/screens/member_list.py:30
 #: src/edit_python_pe/screens/save_loading.py:53
 msgid "Quit"
-msgstr "Esentato"
+msgstr "Esci"
 
 #: src/edit_python_pe/screens/dashboard.py:20
 msgid "Add New Member"
